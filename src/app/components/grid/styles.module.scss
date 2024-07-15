@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+
+  @media (max-width: 490px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 360px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .item {
+    width: 100%;
+    max-width: 100%;
+
+    padding-top: 100%;
+
+    overflow: hidden;
+
+    position: relative;
+
+    border-radius: var(--border-radius-400);
+    border: 0.8px solid var(--color-300);
+
+    .image {
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      object-fit: cover;
+    }
+  }
+}

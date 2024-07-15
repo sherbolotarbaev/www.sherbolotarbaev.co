@@ -1,0 +1,39 @@
+.header {
+  width: 100%;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  transition: transform var(--duration);
+
+  background: var(--bg-400);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  &.fixed {
+    transform: translateY(-100%);
+
+    @media (max-width: 1024px) {
+      transform: translateX(0%);
+    }
+  }
+}
+
+.container {
+  height: 3.88rem;
+
+  display: flex;
+  // align-items: center;
+  justify-content: space-between;
+
+  transition: height var(--duration);
+
+  .row {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+  }
+}

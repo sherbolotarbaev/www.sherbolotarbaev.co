@@ -1,0 +1,143 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+
+  text-decoration: none;
+}
+
+::selection {
+  background: #47a3f3;
+  color: #fefefe;
+}
+
+html,
+body {
+  width: 100vw;
+
+  min-height: 100vh;
+  min-width: var(--min-width);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
+
+  background: var(--bg-main);
+
+  color: var(--color-800);
+
+  main {
+    width: 100%;
+    height: 100%;
+
+    flex: 1 1 auto;
+  }
+
+  .wrapper {
+    max-width: var(--max-width);
+
+    margin-inline: auto;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    width: 100%;
+
+    padding: 0 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .title {
+    font-size: 1.375rem;
+    font-weight: 500;
+    color: var(--color-800);
+  }
+
+  .desc {
+    line-height: 1.75rem;
+
+    font-size: 0.9375rem;
+    font-weight: 300;
+    color: var(--color-600);
+  }
+
+  .btn-reset {
+    outline: none;
+    cursor: pointer;
+
+    background: var(--bg-main);
+    border: 1.2px solid var(--color-300);
+
+    font-family: inherit;
+  }
+
+  .list-reset {
+    list-style: none;
+  }
+
+  .input-reset {
+    -webkit-appearance: none;
+    appearance: none;
+
+    background: var(--bg-main);
+    border: none;
+    border-radius: 0;
+    outline: none;
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+  }
+
+  .logo_wrapper {
+    width: 5.625rem;
+    height: 5.625rem;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    &.gradient {
+      position: relative;
+
+      background: url(https://yastatic.net/s3/kinopoisk-frontend/hd-www/release/_next/static/media/plus-xs.7cc3bd56.svg)
+        no-repeat;
+      background-size: contain;
+
+      .logo {
+        padding: 0.15rem;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        border-radius: 50%;
+      }
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+  }
+}

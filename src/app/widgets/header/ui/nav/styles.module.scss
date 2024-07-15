@@ -1,0 +1,38 @@
+.nav {
+  height: 100%;
+
+  .list {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 1.688rem;
+
+    .item {
+      height: 100%;
+
+      .link {
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        opacity: 0.6;
+
+        line-height: 0.2rem;
+        font-size: 0.875rem;
+        color: var(--color-800);
+
+        transition: opacity var(--duration);
+
+        &.isCurrent {
+          opacity: 1;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
