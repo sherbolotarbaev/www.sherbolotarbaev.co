@@ -16,11 +16,7 @@ export default function Grid({ images }: Readonly<GridProps>) {
     <div className={styles.grid}>
       {React.Children.toArray(
         images.map(({ src, alt, blurDataURL }) => (
-          <Link
-            href={src}
-            // target="_blank"
-            className={styles.item}
-          >
+          <Link href={src} className={styles.item}>
             <Image
               className={styles.image}
               src={src}
@@ -28,6 +24,7 @@ export default function Grid({ images }: Readonly<GridProps>) {
               width={1080}
               height={1080}
               loading="lazy"
+              placeholder="blur"
               blurDataURL={blurDataURL}
             />
           </Link>

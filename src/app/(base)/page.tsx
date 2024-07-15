@@ -2,7 +2,7 @@ import { siteConfig } from '~/config/site';
 import clsx from 'clsx';
 
 import { getBase64 } from 'shared/lib/blur-data-url';
-import { getImagesWuthBlur } from 'shared/lib/images';
+import { getImagesWithBlur } from 'shared/lib/images';
 
 import Image from 'next/image';
 import Button from 'components/button';
@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 
 export default async function Home() {
   const sherbolotBlurDataUrl = await getBase64('sherbolot.webp');
-  const images = await getImagesWuthBlur();
+  const images = await getImagesWithBlur();
 
   return (
     <>

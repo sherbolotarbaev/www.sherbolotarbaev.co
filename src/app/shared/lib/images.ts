@@ -19,7 +19,7 @@ const images = [
   'ak-suu.jpeg',
 ];
 
-export async function getImagesWuthBlur(): Promise<TImage[]> {
+export async function getImagesWithBlur(): Promise<TImage[]> {
   const base64Promises = images.map((image) => getBase64(image));
   const blurDataURLs = await Promise.all(base64Promises);
 
