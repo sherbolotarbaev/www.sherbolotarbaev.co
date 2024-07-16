@@ -9,8 +9,9 @@
   transition: transform var(--duration);
 
   background: var(--bg-400);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 0.8px solid var(--color-300);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   &.fixed {
     transform: translateY(-100%);
@@ -25,7 +26,6 @@
   height: 3.88rem;
 
   display: flex;
-  // align-items: center;
   justify-content: space-between;
 
   transition: height var(--duration);
@@ -35,5 +35,6 @@
 
     display: flex;
     align-items: center;
+    gap: 1.25rem;
   }
 }

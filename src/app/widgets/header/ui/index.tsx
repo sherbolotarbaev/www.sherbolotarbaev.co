@@ -3,7 +3,8 @@
 import clsx from 'clsx';
 import { useHeaderFixed } from '../lib';
 
-import { Nav } from './nav';
+import Nav from './nav';
+import Logo from './logo';
 
 import styles from './styles.module.scss';
 
@@ -19,6 +20,8 @@ export function Header() {
       <div className="wrapper">
         <div className={clsx('container', styles.container)}>
           <div className={styles.row}>
+            <Logo />
+
             <Nav />
           </div>
         </div>

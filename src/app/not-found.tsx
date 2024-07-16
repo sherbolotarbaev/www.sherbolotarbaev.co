@@ -21,7 +21,7 @@ export default function NotFound() {
         </p>
       </div>
 
-      <Button width={120} redirect="/">
+      <Button width={110} redirect="/">
         Head back
       </Button>
     </div>

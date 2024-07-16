@@ -7,9 +7,11 @@ import { getImagesWithBlur } from 'shared/lib/images';
 import Image from 'next/image';
 import Button from 'components/button';
 import Grid from 'components/grid';
+import Badge from 'components/badge';
 
 import sherbolot from 'public/images/sherbolot.webp';
 import { IoIosArrowRoundForward } from 'react-icons/io';
+import { SiNestjs, SiNextdotjs, SiTypescript } from 'react-icons/si';
 import styles from './styles.module.scss';
 
 export default async function Home() {
@@ -20,7 +22,7 @@ export default async function Home() {
     <>
       <div className={clsx('wrapper', styles.wrapper)}>
         <div className={clsx('container', styles.container)}>
-          <div className={'logo_wrapper gradient'}>
+          <div className="logo_wrapper gradient">
             <Image
               className="logo"
               src={sherbolot}
@@ -43,6 +45,23 @@ export default async function Home() {
           <Button width={195} open="/cv/sherbolot-arbaev.pdf">
             📢 Available for Work <IoIosArrowRoundForward size={19} />
           </Button>
+        </div>
+
+        <div className={clsx('container', styles.container)}>
+          <p className="desc">
+            {"I'm good at"}
+            <Badge href="https://nextjs.org/">
+              <SiNextdotjs /> Next.js
+            </Badge>
+            ,
+            <Badge href="https://nestjs.com/">
+              <SiNestjs /> Nest.js
+            </Badge>
+            ,
+            <Badge href="https://www.typescriptlang.org/">
+              <SiTypescript /> TypeScript
+            </Badge>
+          </p>
         </div>
 
         <div className={clsx('container', styles.container)}>

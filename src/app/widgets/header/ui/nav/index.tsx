@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { links as items } from '~/content/header';
 import styles from './styles.module.scss';
 
-export function Nav() {
+export default function Nav() {
   const pathname = usePathname();
 
   return (

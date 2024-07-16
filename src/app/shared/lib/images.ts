@@ -1,7 +1,4 @@
-'use server';
-
 import { getBase64 } from './blur-data-url';
-import { unstable_noStore as noStore } from 'next/cache';
 
 export type TImage = {
   src: string;
@@ -23,7 +20,6 @@ const images = [
 ];
 
 export async function getImagesWithBlur(): Promise<TImage[]> {
-  noStore();
   const base64Promises = images.map((image) => getBase64(image));
   const blurDataURLs = await Promise.all(base64Promises);
 
