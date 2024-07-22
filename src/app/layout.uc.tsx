@@ -1,5 +1,6 @@
 'use client';
 
+import { Toaster } from 'sonner';
 import Providers from './providers';
 
 interface RootLayoutClientProps {
@@ -7,5 +8,11 @@ interface RootLayoutClientProps {
 }
 
 export default function RootLayoutClient({ children }: Readonly<RootLayoutClientProps>) {
-  return <Providers>{children}</Providers>;
+  return (
+    <>
+      <Providers>{children}</Providers>
+
+      <Toaster />
+    </>
+  );
 }

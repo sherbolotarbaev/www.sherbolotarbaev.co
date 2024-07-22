@@ -22,7 +22,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className={clsx('wrapper', styles.wrapper)} style={{ minHeight: '100vh' }}>
+      <div className={clsx('wrapper', styles.wrapper)}>
         <div className={clsx('container', styles.container)}>
           <div className={styles.content_container}>
             <div className="logo_wrapper gradient">
