@@ -9,9 +9,12 @@
   transition: transform var(--duration);
 
   background: var(--bg-400);
-  border-bottom: 0.8px solid var(--color-300);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+
+  &.started {
+    border-bottom: 0.8px solid var(--color-300);
+  }
 
   &.fixed {
     transform: translateY(-100%);
@@ -23,7 +26,7 @@
 }
 
 .container {
-  height: 3.88rem;
+  height: 4.28rem;
 
   display: flex;
   justify-content: space-between;

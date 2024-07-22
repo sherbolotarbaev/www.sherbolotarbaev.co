@@ -4,6 +4,8 @@
   padding: 2.35rem 0;
 
   .container {
+    display: flex;
+    flex-direction: column;
     gap: 0.85rem;
   }
 }

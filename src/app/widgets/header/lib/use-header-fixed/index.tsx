@@ -4,13 +4,16 @@ import { useEffect, useRef, useState } from 'react';
 
 export function useHeaderFixed() {
   const [isFixed, setIsFixed] = useState<boolean>(false);
+  const [isStarted, setIsStarted] = useState<boolean>(false);
   const lastScrollTop = useRef<number>(0);
 
   useEffect(() => {
     const headerFixed = () => {
       const scrollDistance = window.scrollY;
       const isFixed = scrollDistance > lastScrollTop.current;
+      const isStarted = scrollDistance > 5;
 
+      setIsStarted(isStarted);
       setIsFixed(isFixed);
 
       lastScrollTop.current = scrollDistance;
@@ -24,5 +27,8 @@ export function useHeaderFixed() {
   return {
     isFixed,
     setIsFixed,
+
+    isStarted,
+    setIsStarted,
   };
 }

@@ -20,7 +20,7 @@ const images = [
 ];
 
 export async function getImagesWithBlur(): Promise<TImage[]> {
-  const base64Promises = images.map((image) => getBase64(image));
+  const base64Promises = images.map(async (image) => getBase64(image));
   const blurDataURLs = await Promise.all(base64Promises);
 
   const imagesWithBlur = images.map((image, index) => ({

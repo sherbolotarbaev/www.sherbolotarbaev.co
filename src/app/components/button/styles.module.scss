@@ -48,4 +48,56 @@
       }
     }
   }
+
+  &.pulse_animation {
+    transform: scale(1);
+    box-shadow: 0 0 0 var(--bg-main);
+    animation: animation 2s infinite;
+
+    @keyframes animation {
+      0% {
+        transform: scale(0.98);
+        box-shadow: 0 0 0 0 var(--bg-blue);
+      }
+
+      75% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0.6rem var(--bg-main);
+      }
+
+      100% {
+        transform: scale(0.98);
+        box-shadow: 0 0 0 0 var(--bg-main);
+      }
+    }
+  }
+
+  &.blue {
+    background: var(--bg-blue);
+    border-color: transparent;
+
+    &:hover {
+      background: var(--bg-blue-hover);
+    }
+
+    &:active {
+      background: var(--bg-blue-active);
+    }
+
+    &.disabled,
+    &.load {
+      background: var(--bg-blue-hover);
+
+      cursor: not-allowed;
+
+      color: var(--color-600);
+
+      &:hover,
+      &:active {
+        background: var(--bg-blue-hover);
+
+        color: var(--color-600);
+      }
+    }
+  }
 }

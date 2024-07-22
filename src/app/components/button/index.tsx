@@ -14,9 +14,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   open?: string;
   theme?: Theme;
   small?: boolean;
+  pulseAnimation?: boolean;
 }
 
-type Theme = 'red' | 'blue';
+type Theme = 'blue';
 
 export default function Button({
   children,
@@ -26,6 +27,7 @@ export default function Button({
   open,
   theme,
   small = false,
+  pulseAnimation = false,
   ...props
 }: Readonly<ButtonProps>) {
   const router = useRouter();
@@ -37,6 +39,7 @@ export default function Button({
     props.disabled && styles.disabled,
     theme && styles[theme],
     small && styles.small,
+    pulseAnimation && styles.pulse_animation,
   );
 
   const style: React.CSSProperties = {

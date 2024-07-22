@@ -5,15 +5,15 @@ interface ILink {
 
 export const links: ILink[] = [
   {
-    name: 'home',
+    name: 'Home',
     href: '/',
   },
   {
-    name: 'blog',
+    name: 'Blog',
     href: '/blog',
   },
   {
-    name: 'guestbook',
+    name: 'Guestbook',
     href: '/guestbook',
   },
 ];
