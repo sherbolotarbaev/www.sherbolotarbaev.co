@@ -13,6 +13,8 @@ import { setCookie, getCookie } from 'cookies-next';
 
 import Input from 'components/input';
 import Button from 'components/button';
+import OAuthButtons from 'components/button/oauth-buttons';
+import Link from 'next/link';
 
 import styles from './styles.module.scss';
 
@@ -91,11 +93,17 @@ export default function LoginForm() {
       <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
         <div className={clsx('container', styles.container)}>
           <div className={clsx('text', styles.text)}>
-            <h2 className={clsx('title', styles.title)}>Sign in</h2>
+            <h2 className={clsx('title', styles.title)}>Welcome back 👋</h2>
 
-            <p className={clsx('desc', styles.desc)}>
-              Sign in with your email to continue.
-            </p>
+            <p className={clsx('desc', styles.desc)}>Log in to your account.</p>
+          </div>
+
+          <OAuthButtons />
+
+          <div className={styles.divider}>
+            <hr />
+            <span>OR</span>
+            <hr />
           </div>
 
           <Input
@@ -146,6 +154,17 @@ export default function LoginForm() {
           >
             {!isOtpSent ? 'Continue' : 'Sign in'}
           </Button>
+
+          <p className={clsx('desc', styles.desc)}>
+            By logging in, you agree to our Terms of Service and Privacy Policy.
+          </p>
+
+          <Link
+            className={clsx('link', styles.link)}
+            href={next ? `/sign-up?next=${next}` : '/sign-up'}
+          >
+            Don't have an account? Sign Up
+          </Link>
         </div>
       </form>
     </>

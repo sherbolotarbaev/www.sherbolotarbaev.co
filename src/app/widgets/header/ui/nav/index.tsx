@@ -22,7 +22,7 @@ export default function Nav() {
             return (
               <li className={styles.item} key={item.name}>
                 <Link
-                  className={clsx(styles.link, isCurrentPage && styles.isCurrent)}
+                  className={clsx('link', styles.link, isCurrentPage && styles.isCurrent)}
                   href={item.href}
                 >
                   {item.name}

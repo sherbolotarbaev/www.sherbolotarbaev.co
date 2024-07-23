@@ -16,7 +16,7 @@ export function SocialLinks() {
       {React.Children.toArray(
         items.map((item) => (
           <li className={styles.item} key={item.name}>
-            <Link className={styles.link} href={item.href} target="_blank">
+            <Link className={clsx('link', styles.link)} href={item.href} target="_blank">
               <GoArrowUpRight size={19} />
               {item.name}
             </Link>
