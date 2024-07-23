@@ -163,7 +163,7 @@ export default function LoginForm() {
             className={clsx('link', styles.link)}
             href={next ? `/sign-up?next=${next}` : '/sign-up'}
           >
-            Don't have an account? Sign Up
+            {"Don't have an account? Sign Up"}
           </Link>
         </div>
       </form>
