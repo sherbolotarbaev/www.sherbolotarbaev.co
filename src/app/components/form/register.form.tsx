@@ -33,7 +33,7 @@ export default function RegisterForm() {
 
           <Link
             className={clsx('link', styles.link)}
-            href={next ? `/sign-in?next=${next}` : '/sign-in'}
+            href={next !== '/' ? `/sign-in?next=${next}` : '/sign-in'}
           >
             Already have an account? Log in
           </Link>

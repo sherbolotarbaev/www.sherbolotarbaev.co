@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
 
   const next = decodeURIComponent(searchParams.get('next') ?? '/');
 
-  if (pathname === '/redirect') {
+  if (pathname === '/redirect' || pathname.startsWith('/images')) {
     return response;
   }
 
@@ -48,7 +48,15 @@ export async function middleware(request: NextRequest) {
     } catch (_) {}
   }
 
-  if (user && user.isActive && pathname === '/auth') {
+  if (!user && pathname !== '/sign-in' && pathname !== '/sign-up') {
+    const redirectUrl = new URL(
+      pathname !== '/' ? `/sign-in?next=${pathname}` : '/sign-in',
+      url,
+    );
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (user && user.isActive && (pathname === '/sign-in' || pathname === '/sign-up')) {
     const redirectUrl = new URL(`/redirect?to=${next}`, url);
     return NextResponse.redirect(redirectUrl);
   }

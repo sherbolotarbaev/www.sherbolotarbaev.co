@@ -129,23 +129,23 @@ body {
     outline: none;
     cursor: pointer;
 
-    background: var(--bg-main);
+    background: var(--bg-500);
     border: 1.2px solid var(--color-300);
     border-radius: var(--border-radius-300);
 
     font-family: inherit;
     font-size: 0.785rem;
-    color: var(--color-700);
+    color: var(--color-800);
 
     transition: var(--duration);
 
     &:hover {
-      color: var(--color-500);
-      background: var(--bg-main-hover);
+      color: var(--color-600);
+      background: var(--bg-500-hover);
     }
 
     &:active {
-      background: var(--bg-main-active);
+      background: var(--bg-500-active);
     }
   }
 
@@ -157,7 +157,7 @@ body {
     -webkit-appearance: none;
     appearance: none;
 
-    background: var(--bg-main);
+    background: var(--bg-500);
     border: 1px solid var(--color-300);
     border-radius: var(--border-radius-300);
     outline: 2.4px solid transparent;

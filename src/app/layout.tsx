@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Suspense } from 'react';
 import { siteConfig } from '~/config/site';
 
 import RootLayoutClient from './layout.uc';
@@ -48,7 +49,9 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
       <body style={geistSans.style}>
-        <RootLayoutClient>{children}</RootLayoutClient>
+        <Suspense>
+          <RootLayoutClient>{children}</RootLayoutClient>
+        </Suspense>
       </body>
     </html>
   );
