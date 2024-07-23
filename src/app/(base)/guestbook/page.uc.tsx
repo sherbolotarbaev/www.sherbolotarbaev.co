@@ -7,7 +7,7 @@ import Button from '~/app/components/button';
 import styles from './styles.module.scss';
 
 interface GuestbookClientProps {
-  me: User | undefined;
+  me?: User | undefined;
 }
 
 export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) {
@@ -20,7 +20,10 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
           {me ? (
             <p className="desc">Welcome back {me.name}!</p>
           ) : (
-            <Button redirect="/sign-in?next=/guestbook" width={120}>
+            <Button
+              redirect="https://auth.sherbolotarbaev.co/sign-in?next=/guestbook"
+              width={120}
+            >
               Sign in
             </Button>
           )}

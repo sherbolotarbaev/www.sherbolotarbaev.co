@@ -7,9 +7,5 @@ interface BannerProps {
 }
 
 export default function Banner({ children }: Readonly<BannerProps>) {
-  return (
-    <div className={styles.banner}>
-      {children} <div className={styles.animated_element}></div>
-    </div>
-  );
+  return <div className={styles.banner}>{children}</div>;
 }
