@@ -41,3 +41,14 @@ type Action = {
   desc: string;
   body: React.ReactNode;
 };
+
+type View = {
+  slug: string;
+  count: number;
+  likesCount: number;
+};
+
+type Like = {
+  userId: number;
+  slug: string;
+};

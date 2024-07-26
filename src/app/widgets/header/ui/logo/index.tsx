@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import logo from 'public/images/logo.png';
 
-export default function Logo() {
+export const Logo = () => {
   return (
     <div
       className="logo_wrapper"
@@ -24,4 +24,5 @@ export default function Logo() {
       />
     </div>
   );
-}
+};
+export default Logo;

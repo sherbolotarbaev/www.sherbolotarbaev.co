@@ -1,0 +1,8 @@
+.views {
+  color: var(--color-400);
+
+  &:before {
+    content: '•';
+    margin: 0 0.35rem;
+  }
+}

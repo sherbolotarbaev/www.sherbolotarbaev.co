@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { geistMono } from '~/app/shared/lib/fonts';
+import { geistMono } from 'shared/lib/fonts';
 import styles from './styles.module.scss';
 
 interface BadgeProps {
@@ -10,18 +10,19 @@ interface BadgeProps {
   href: string;
 }
 
-export default function Badge({ children, href }: Readonly<BadgeProps>) {
+const Badge: React.FC<BadgeProps> = ({ children, href }) => {
   return (
     <Link className={styles.badge} href={href} target="_blank">
       {children}
     </Link>
   );
-}
+};
+export default Badge;
 
-export function LanguageBadge({ children, href }: Readonly<BadgeProps>) {
+export const LanguageBadge: React.FC<BadgeProps> = ({ children, href }) => {
   return (
     <Link className={styles.badge} href={href} target="_blank" style={geistMono.style}>
       {children}
     </Link>
   );
-}
+};

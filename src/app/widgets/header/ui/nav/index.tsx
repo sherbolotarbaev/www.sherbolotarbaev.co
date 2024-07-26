@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { usePathname } from 'next/navigation';
+import React from 'react';
 
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { links as items } from '~/content/header';
 import styles from './styles.module.scss';
 
-export default function Nav() {
+export const Nav = () => {
   const pathname = usePathname();
 
   return (
@@ -34,4 +34,5 @@ export default function Nav() {
       </ul>
     </nav>
   );
-}
+};
+export default Nav;

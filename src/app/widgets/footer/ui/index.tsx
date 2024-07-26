@@ -7,7 +7,7 @@ import { SocialLinks } from './social-links';
 
 import styles from './styles.module.scss';
 
-export function Footer() {
+export const Footer = () => {
   const currentYear = useCurrentYear();
 
   return (
@@ -21,4 +21,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};

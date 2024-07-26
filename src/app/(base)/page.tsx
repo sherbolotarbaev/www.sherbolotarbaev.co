@@ -1,24 +1,22 @@
+import clsx from 'clsx';
 import React from 'react';
 import { siteConfig } from '~/config/site';
-import clsx from 'clsx';
 
 import { getBase64 } from 'shared/lib/blur-data-url';
-import { getImagesWithBlur } from 'shared/lib/images';
 
-import Image from 'next/image';
 import Badge, { LanguageBadge } from 'components/badge';
-import Link from 'next/link';
 import Grid from 'components/grid';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { skills } from '~/content/home';
 import sherbolot from 'public/images/sherbolot.webp';
-import { BiLogoGithub, BiLogoLinkedin } from 'react-icons/bi';
 import { X } from 'public/svg';
+import { BiLogoGithub, BiLogoLinkedin } from 'react-icons/bi';
+import { images, skills } from '~/content/home';
 import styles from './styles.module.scss';
 
 export default async function Home() {
   const sherbolotBlurDataUrl = await getBase64('sherbolot.webp');
-  const images = await getImagesWithBlur();
 
   return (
     <>
@@ -48,7 +46,7 @@ export default async function Home() {
               <p className="desc">Software Engineer | Full Stack Developer</p>
             </div>
 
-            <p className="desc">
+            <p className={clsx('desc', styles.desc)}>
               <Badge href="https://github.com/sherbolotarbaev">
                 <BiLogoGithub size={15} /> GitHub
               </Badge>
@@ -59,13 +57,10 @@ export default async function Home() {
             </p>
           </div>
 
-          <p
-            className="desc"
-            dangerouslySetInnerHTML={{
-              __html: `I'm a software engineer from Kyrgyzstan 🇰🇬. <br />
-              I'm fascinated by large-scale, high-impact products and contributed to major feature launches in industry-leading services.`,
-            }}
-          ></p>
+          <p className="desc">
+            {`I'm a software engineer from Kyrgyzstan 🇰🇬. I'm fascinated by large-scale, high-impact products and contributed to major
+            feature launches in industry-leading services.`}
+          </p>
         </div>
 
         <div className={clsx('container', styles.container)}>
@@ -105,7 +100,7 @@ export default async function Home() {
         <div className={clsx('container', styles.container)}>
           <h2 className="title highlight">tech stack 🦾</h2>
 
-          <p className="desc">
+          <p className={clsx('desc', styles.desc)}>
             {React.Children.toArray(
               skills.map((skill) => (
                 <LanguageBadge href={skill.href}>

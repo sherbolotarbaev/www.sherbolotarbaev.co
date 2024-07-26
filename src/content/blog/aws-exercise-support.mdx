@@ -1,0 +1,109 @@
+---
+title: 'AWS Exercise Support'
+private: 'true'
+publishedAt: '2024-05-23'
+image: '/images/aws-exercise-support-preview.png'
+author: 'Sher Arbaev'
+summary: 'This is a notes for creating a logic to make AWS logic exercise support on platform'
+---
+
+### ENDPOINTS:
+
+#### Start Lab / Create AWS Account (Platform)
+
+**Method**: `POST` <br />
+**Endpoint**: `/aws/:exerciseId` <br />
+**Response:**
+
+```jsx
+credentials: {
+  username: string;
+  password: string;
+  consoleUrl: string;
+  accountId: number;
+}
+```
+
+<Image
+  src="https://sherbolotarbaev.co/images/aws-exercise-support.png"
+  alt="AWS Exercise Support | Endpoint"
+/>
+
+#### Check Exercise / Check Test Case URLs (compare actual & expected outputs)
+
+**Method**: `POST` <br />
+**Endpoint**: `/aws/:exerciseId/check` <br />
+**Response:**
+
+```jsx
+{
+	submissionStatus: 'TODO' | 'SOLVED' | 'ATTEMPTED',
+	testCases: [
+    {
+      result: 'passed' | 'failed',
+      input": string, // Stringfied JSON
+      output": string, // Stringfied JSON
+      testCaseName: string,
+      errorMessage: string,
+      actualOutput: string, // Stringfied JSON
+      stdoutDiff: [
+        {
+          added: boolean,
+          removed: boolean,
+          edited: boolean,
+          value: {
+            from: string, // Stringfied JSON
+            to: string, // Stringfied JSON
+          } | string,
+          count: number
+        }
+      ]
+    }
+	  ...
+	]
+}
+```
+
+<Image
+  src="https://sherbolotarbaev.co/images/aws-exercise-support2.png"
+  alt="AWS Exercise Support | Endpoint"
+/>
+
+### Get AWS Account credentials (Platform)
+
+**Method**: `GET` <br />
+**Endpoint**: `/aws/:exerciseId` <br />
+**Response:**
+
+```jsx
+{
+	credentials: {
+			username: string
+			password: string
+			consoleUrl: string
+			accountId: number
+	} | null
+}
+```
+
+<Image
+  src="https://sherbolotarbaev.co/images/aws-exercise-support3.png"
+  alt="AWS Exercise Support | Endpoint"
+/>
+
+### Clean-up AWS Member Account (Platform)
+
+**Method**: `DELETE` <br />
+**Endpoint**: `/aws/:exerciseId/clean-up` <br />
+**Response:**
+
+```jsx
+{
+  success: boolean;
+}
+```
+
+<Image
+  src="https://sherbolotarbaev.co/images/aws-exercise-support4.png"
+  alt="AWS Exercise Support | Endpoint"
+/>

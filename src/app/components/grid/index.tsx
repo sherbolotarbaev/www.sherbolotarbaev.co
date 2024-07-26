@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TImage } from 'shared/lib/images';
+import { IImage } from '~/content/home';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,10 +8,10 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 
 interface GridProps {
-  images: TImage[];
+  images: IImage[];
 }
 
-export default function Grid({ images }: Readonly<GridProps>) {
+const Grid: React.FC<GridProps> = ({ images }) => {
   return (
     <div className={styles.grid}>
       {React.Children.toArray(
@@ -32,4 +32,5 @@ export default function Grid({ images }: Readonly<GridProps>) {
       )}
     </div>
   );
-}
+};
+export default Grid;

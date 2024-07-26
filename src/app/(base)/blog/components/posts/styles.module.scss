@@ -1,0 +1,38 @@
+.posts {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.55rem;
+
+  .post {
+    width: 100%;
+
+    &:hover {
+      .title {
+        color: var(--color-800);
+      }
+    }
+
+    .title {
+      color: var(--color-600);
+
+      .new {
+        padding: 0.15rem 0.35rem;
+
+        background: var(--green-badge-bg);
+        border-radius: var(--border-radius-500);
+        border: 0.8px solid var(--green-badge-border-color);
+
+        font-size: 0.785rem;
+        font-weight: 400;
+        color: var(--green-badge-color);
+      }
+    }
+
+    .date {
+      color: var(--color-400);
+    }
+  }
+}

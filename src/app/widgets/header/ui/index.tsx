@@ -3,13 +3,13 @@
 import clsx from 'clsx';
 import { useHeaderFixed } from '../lib';
 
+import Button from 'components/button';
 import Nav from './nav';
-import Button from '@/components/button';
 
 import { GoArrowUpRight } from 'react-icons/go';
 import styles from './styles.module.scss';
 
-export function Header() {
+export const Header = () => {
   const { isFixed, isStarted } = useHeaderFixed();
 
   return (
@@ -39,4 +39,4 @@ export function Header() {
       </div>
     </header>
   );
-}
+};
