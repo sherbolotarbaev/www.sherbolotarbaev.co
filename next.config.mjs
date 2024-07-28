@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['next-mdx-remote'],
+
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: [],
+    domains: ['sherbolotarbaev.co', 'www.sherbolotarbaev.co'],
   },
 
   webpack(config) {

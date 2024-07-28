@@ -35,13 +35,6 @@ type GuestbookMessage = {
   };
 };
 
-type Action = {
-  name: 'Delete';
-  title: string;
-  desc: string;
-  body: React.ReactNode;
-};
-
 type View = {
   slug: string;
   count: number;

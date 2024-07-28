@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { getMe } from '@/redux/api/me/server';
 import GuestbookClient from './page.uc';
 
 export const metadata: Metadata = {
@@ -7,5 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Guestbook() {
-  return <GuestbookClient />;
+  const me = await getMe();
+  return <GuestbookClient me={me} />;
 }

@@ -21,7 +21,7 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
             <p className="desc">Welcome back {me.name}!</p>
           ) : (
             <Button
-              redirect="https://auth.sherbolotarbaev.co/sign-in?next=/guestbook"
+              redirect={`${process.env.NEXT_PUBLIC_AUTH_URL}/sign-in?next=/guestbook`}
               width={120}
             >
               Sign in

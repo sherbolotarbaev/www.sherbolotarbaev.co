@@ -11,11 +11,11 @@
   --bg-white-hover: #f2f2f2;
   --bg-white-active: #ededed;
 
-  --bg-blue: rgb(37 99 235 /1);
+  --bg-blue: rgb(52, 116, 255);
   --bg-blue-hover: rgb(59 130 246 / 1);
   --bg-blue-active: rgb(53, 118, 222);
 
-  --blue-color: rgba(37, 100, 235);
+  --blue-color: rgb(46, 110, 249);
   --blue-outline-color: rgba(37, 100, 235, 0.456);
   --blue-border-color: rgba(37, 100, 235, 0.712);
 
@@ -26,6 +26,28 @@
   --red-color: rgb(255, 93, 93);
   --red-outline-color: rgba(255, 93, 93, 0.263);
   --red-border-color: rgba(255, 93, 93, 0.697);
+
+  --bg-code: var(--bg-500);
+  --bg-code-300: var(--bg-300);
+  --bg-code-hover: var(--color-300);
+  --bg-code--markup-inserted: #033a16;
+  --bg-code--markup-deleted: #67060c;
+
+  --color-code-main: var(--color-800);
+  --color-code-keyword: #ff7b72;
+  --color-code-entity: #d2a8ff;
+  --color-code-constant: #79c0ff;
+  --color-code-string: #a5d6ff;
+  --color-code-variable: #ffa657;
+  --color-code-comment: #8b949e;
+  --color-code-entity-tag: #7ee787;
+  --color-code-storage-modifier-import: var(--color-code-main);
+  --color-code-markup-heading: #1f6feb;
+  --color-code-markup-list: #f2cc60;
+  --color-code-markup-italic: var(--color-code-main);
+  --color-code-markup-bold: var(--color-code-main);
+  --color-code-markup-inserted: #aff5b4;
+  --color-code-markup-deleted: #ffdcd7;
 
   --border-radius-700: 1rem;
   --border-radius-500: 0.75rem;
