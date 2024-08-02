@@ -1,11 +1,11 @@
 :root {
-  --bg-main: hsl(240 10% 3.9%);
-  --bg-main-hover: #212125;
-  --bg-main-active: #28282d;
+  --bg-main: hsl(240, 10%, 6%);
+  --bg-main-hover: hsl(240, 10%, 8%);
+  --bg-main-active: hsl(240, 10%, 10%);
 
-  --bg-500: #1b1b1f;
-  --bg-500-hover: #26262c;
-  --bg-500-active: #2f2f35;
+  --bg-500: hsl(240, 9.47%, 10.39%);
+  --bg-500-hover: hsl(240, 9.47%, 14%);
+  --bg-500-active: hsl(240, 9.47%, 16%);
 
   --bg-white: #fff;
   --bg-white-hover: #f2f2f2;
@@ -15,17 +15,17 @@
   --bg-blue-hover: rgb(59 130 246 / 1);
   --bg-blue-active: rgb(53, 118, 222);
 
-  --blue-color: rgb(46, 110, 249);
-  --blue-outline-color: rgba(37, 100, 235, 0.456);
-  --blue-border-color: rgba(37, 100, 235, 0.712);
+  --blue-color: rgb(68, 127, 255);
+  --blue-outline-color: rgba(26, 78, 189, 0.571);
+  --blue-border-color: rgba(68, 127, 255, 0.823);
 
   --bg-red: rgb(255, 111, 111);
   --bg-red-hover: rgb(255, 117, 117);
   --bg-red-active: rgb(222, 84, 84);
 
-  --red-color: rgb(255, 93, 93);
-  --red-outline-color: rgba(255, 93, 93, 0.263);
-  --red-border-color: rgba(255, 93, 93, 0.697);
+  --red-color: hsl(0 90.6% 70.8% / 1);
+  --red-outline-color: hsl(0 84.2% 60.2% / 0.3);
+  --red-border-color: hsl(0 90.6% 70.8% / 1);
 
   --bg-code: var(--bg-500);
   --bg-code-300: var(--bg-300);
@@ -58,7 +58,14 @@
   --color-800: rgb(255 255 255 / 1);
   --color-600: rgba(235, 235, 245, 0.6);
   --color-400: rgba(235, 235, 245, 0.343);
-  --color-300: hsl(240 3.7% 15.9%);
+  --color-300: hsl(240, 7%, 19%);
+
+  --gradient-loader: linear-gradient(
+    90deg,
+    var(--color-300),
+    var(--bg-main),
+    var(--bg-500)
+  );
 
   --min-width: 21.875rem;
   --max-width: 34.375rem;

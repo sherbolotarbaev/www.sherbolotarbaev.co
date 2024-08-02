@@ -1,23 +1,24 @@
 import clsx from 'clsx';
-import React from 'react';
+import dynamic from 'next/dynamic';
 import { siteConfig } from '~/config/site';
 
-import { getBase64 } from 'shared/lib/blur-data-url';
-
-import Badge, { LanguageBadge } from 'components/badge';
-import Grid from 'components/grid';
+import Badge from 'components/badge';
+import { GridLoad } from 'components/grid';
 import Image from 'next/image';
 import Link from 'next/link';
+import Skills from './components/skills';
 
 import sherbolot from 'public/images/sherbolot.webp';
-import { X } from 'public/svg';
 import { BiLogoGithub, BiLogoLinkedin } from 'react-icons/bi';
-import { images, skills } from '~/content/home';
+import { images } from '~/content/home';
 import styles from './styles.module.scss';
 
-export default async function Home() {
-  const sherbolotBlurDataUrl = await getBase64('sherbolot.webp');
+const Grid = dynamic(() => import('components/grid'), {
+  ssr: false,
+  loading: () => <GridLoad images={images} />,
+});
 
+export default async function Home() {
   return (
     <>
       <div className={clsx('wrapper', styles.wrapper)}>
@@ -31,17 +32,12 @@ export default async function Home() {
                 loading="lazy"
                 layout="fill"
                 placeholder="blur"
-                blurDataURL={sherbolotBlurDataUrl}
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAMklEQVR4nAEnANj/ANTe4JSQkOvl21diZQC/rqNwZmvItraVn6kAAAwYdpqq8O/z8/j3vaUXBBJEHV0AAAAASUVORK5CYII="
               />
             </div>
 
             <div className="text">
-              <h2 className="title">
-                Sher Arbaev
-                <Badge href="https://www.wedevx.co">
-                  <X style={{ width: '1rem', margin: ' 0.25rem 0' }} />
-                </Badge>
-              </h2>
+              <h2 className="title">Sher Arbaev</h2>
 
               <p className="desc">Software Engineer | Full Stack Developer</p>
             </div>
@@ -100,15 +96,7 @@ export default async function Home() {
         <div className={clsx('container', styles.container)}>
           <h2 className="title highlight">tech stack 🦾</h2>
 
-          <p className={clsx('desc', styles.desc)}>
-            {React.Children.toArray(
-              skills.map((skill) => (
-                <LanguageBadge href={skill.href}>
-                  {<skill.icon size={12} />} {skill.name}
-                </LanguageBadge>
-              )),
-            )}
-          </p>
+          <Skills />
         </div>
 
         <div className={clsx('container', styles.container)}>

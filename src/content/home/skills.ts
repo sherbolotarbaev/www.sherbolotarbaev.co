@@ -1,72 +1,83 @@
-import type { IconType } from 'react-icons';
-import {
-  SiAmazonaws,
-  SiDocker,
-  SiExpress,
-  SiFastify,
-  SiNestjs,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiReact,
-  SiTypescript,
-} from 'react-icons/si';
-
 interface ISkills {
   name: string;
-  icon: IconType;
+  iconName: string;
   href: string;
 }
 
 export const skills: ISkills[] = [
   {
+    name: 'JavaScript',
+    iconName: 'SiJavascript',
+    href: 'https://www.javascript.com',
+  },
+  {
     name: 'TypeScript',
-    icon: SiTypescript,
+    iconName: 'SiTypescript',
     href: 'https://www.typescriptlang.org',
   },
   {
     name: 'Node.js',
-    icon: SiNodedotjs,
+    iconName: 'SiNodedotjs',
     href: 'https://nodejs.org',
   },
   {
     name: 'Nest.js',
-    icon: SiNestjs,
+    iconName: 'SiNestjs',
     href: 'https://nestjs.com',
   },
   {
     name: 'Fastify',
-    icon: SiFastify,
+    iconName: 'SiFastify',
     href: 'https://fastify.dev',
   },
   {
     name: 'Express',
-    icon: SiExpress,
+    iconName: 'SiExpress',
     href: 'https://expressjs.com',
   },
   {
     name: 'PostgreSQL',
-    icon: SiPostgresql,
+    iconName: 'SiPostgresql',
     href: 'https://www.postgresql.org',
   },
   {
     name: 'AWS',
-    icon: SiAmazonaws,
+    iconName: 'SiAmazonaws',
     href: 'https://aws.amazon.com',
   },
   {
     name: 'Docker',
-    icon: SiDocker,
+    iconName: 'SiDocker',
     href: 'https://www.docker.com',
   },
   {
+    name: 'Git',
+    iconName: 'SiGit',
+    href: 'https://git-scm.com',
+  },
+  {
     name: 'React',
-    icon: SiReact,
+    iconName: 'SiReact',
     href: 'https://react.dev',
   },
   {
+    name: 'Redux',
+    iconName: 'SiRedux',
+    href: 'https://redux.js.org',
+  },
+  {
     name: 'Next.js',
-    icon: SiNextdotjs,
+    iconName: 'SiNextdotjs',
     href: 'https://nextjs.org',
+  },
+  {
+    name: 'Sass',
+    iconName: 'SiSass',
+    href: 'https://sass-lang.com',
+  },
+  {
+    name: 'Tailwind',
+    iconName: 'SiTailwindcss',
+    href: 'https://tailwindcss.com',
   },
 ];

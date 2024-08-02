@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React from 'react';
 
 import { IImage } from '~/content/home';
@@ -34,3 +35,15 @@ const Grid: React.FC<GridProps> = ({ images }) => {
   );
 };
 export default Grid;
+
+export const GridLoad: React.FC<GridProps> = ({ images }) => {
+  return (
+    <div className={styles.grid}>
+      {React.Children.toArray(
+        images.map(({ src }) => (
+          <Link href={src} className={clsx(styles.item, styles.load)}></Link>
+        )),
+      )}
+    </div>
+  );
+};

@@ -1,0 +1,35 @@
+.skills {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0.85rem;
+
+  @media (max-width: 625px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 475px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .skill {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    line-height: 1.75rem;
+
+    font-size: 0.875rem;
+    color: var(--color-600);
+
+    &:hover {
+      color: var(--color-800);
+    }
+  }
+}
