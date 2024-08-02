@@ -7,6 +7,7 @@ import { notFound, redirect } from 'next/navigation';
 
 import { getMe } from '@/redux/api/me/server';
 import { getBlogPosts } from 'shared/lib/blog';
+import { getBase64 } from 'shared/lib/blur-data-url';
 import { formatDate, formatDate2 } from 'shared/lib/date';
 
 import MDXContent from 'components/mdx';
@@ -64,7 +65,6 @@ interface PostProps {
 
 export default async function Post({ params: { slug } }: Readonly<PostProps>) {
   const post = getBlogPosts().find((post) => post.slug === slug);
-  const views = await getViews();
 
   if (!post) {
     return notFound();
@@ -97,6 +97,11 @@ export default async function Post({ params: { slug } }: Readonly<PostProps>) {
       );
     }
   }
+
+  const views = await getViews();
+  const imageBlurData = post.metadata.image
+    ? await getBase64(post.metadata.image)
+    : undefined;
 
   return (
     <>
@@ -144,6 +149,8 @@ export default async function Post({ params: { slug } }: Readonly<PostProps>) {
                 src={`${siteConfig.url}${post.metadata.image}`}
                 alt={post.metadata.title}
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={imageBlurData}
               />
             </div>
           )}
