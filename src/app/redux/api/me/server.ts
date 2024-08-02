@@ -23,7 +23,7 @@ export async function getMe(_request: GetMeRequest): Promise<GetMeResponse | und
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/me`, {
       method: 'GET',
-      headers: headers(),
+      headers: Object.fromEntries(headers()),
       credentials: 'include',
     });
     if (!response.ok) return;
