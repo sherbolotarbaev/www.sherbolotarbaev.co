@@ -137,7 +137,7 @@ body {
       cursor: default;
     }
 
-    background: var(--bg-500);
+    background: var(--bg-main);
     border: 1.2px solid var(--color-300);
     border-radius: var(--border-radius-300);
 
@@ -148,12 +148,13 @@ body {
     transition: var(--duration);
 
     &:hover {
+      background: var(--bg-main-hover);
+
       color: var(--color-600);
-      background: var(--bg-500-hover);
     }
 
     &:active {
-      background: var(--bg-500-active);
+      background: var(--bg-main-active);
     }
   }
 
@@ -170,10 +171,10 @@ body {
     -webkit-appearance: none;
     appearance: none;
 
-    background: var(--bg-500);
-    border: 1px solid var(--color-300);
+    background: var(--bg-main);
+    border: 1.2px solid var(--color-300);
     border-radius: var(--border-radius-300);
-    outline: 2.4px solid transparent;
+    outline: 3px solid transparent;
 
     &::-webkit-search-decoration,
     &::-webkit-search-cancel-button,
