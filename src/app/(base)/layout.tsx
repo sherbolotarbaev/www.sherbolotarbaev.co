@@ -1,8 +1,5 @@
-import { Header } from 'widgets/header';
 import { Footer } from 'widgets/footer';
-
-export const dynamic = 'force-static';
-export const revalidate = 600; // every 10 mins
+import { Header } from 'widgets/header';
 
 interface BaseLayoutProps {
   children: React.ReactNode;

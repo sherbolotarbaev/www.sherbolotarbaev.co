@@ -11,9 +11,10 @@ import styles from './styles.module.scss';
 
 interface PostsProps {
   items: Post[];
+  views: View[];
 }
 
-const Posts: React.FC<PostsProps> = ({ items }) => {
+const Posts: React.FC<PostsProps> = ({ items, views }) => {
   return (
     <div className={styles.posts}>
       {items
@@ -34,7 +35,7 @@ const Posts: React.FC<PostsProps> = ({ items }) => {
             <p className={clsx('desc', styles.date)}>
               {formatDate(post.metadata.publishedAt)}
 
-              <Views slug={post.slug} />
+              <Views slug={post.slug} allViews={views} />
             </p>
           </Link>
         ))}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '~/config/site';
 
+import { getViews } from '@/redux/api/blog/server';
 import clsx from 'clsx';
 import { notFound, redirect } from 'next/navigation';
 
@@ -63,6 +64,7 @@ interface PostProps {
 
 export default async function Post({ params: { slug } }: Readonly<PostProps>) {
   const post = getBlogPosts().find((post) => post.slug === slug);
+  const views = await getViews();
 
   if (!post) {
     return notFound();
@@ -129,7 +131,7 @@ export default async function Post({ params: { slug } }: Readonly<PostProps>) {
             <p className={clsx('desc', styles.date)}>
               {formatDate2(post.metadata.publishedAt)} (
               {formatDate(post.metadata.publishedAt)})
-              <ViewsForPost slug={post.slug} />
+              <ViewsForPost slug={post.slug} allViews={views} />
             </p>
           </div>
 

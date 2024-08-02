@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { getBlogPosts } from 'shared/lib/blog';
 
+import { getViews } from '@/redux/api/blog/server';
+
 import Posts from './components/posts';
 
 import styles from './styles.module.scss';
@@ -10,8 +12,9 @@ export const metadata: Metadata = {
   title: 'Blog',
 };
 
-export default function Blog() {
+export default async function Blog() {
   const blogPosts = getBlogPosts();
+  const views = await getViews();
 
   return (
     <>
@@ -19,7 +22,7 @@ export default function Blog() {
         <div className={clsx('container', styles.container)}>
           <h2 className="title">Personal blog</h2>
 
-          <Posts items={blogPosts} />
+          <Posts items={blogPosts} views={views} />
         </div>
       </div>
     </>
