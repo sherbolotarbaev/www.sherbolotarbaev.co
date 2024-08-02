@@ -2,26 +2,23 @@
 
 import { siteConfig } from '~/config/site';
 
+import clsx from 'clsx';
 import { useMenu } from 'providers/menu';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from 'public/images/logo.png';
+import styles from './styles.module.scss';
 
 const Logo = () => {
   const { isOpen, toggle } = useMenu();
 
   return (
     <Link
-      className="logo_wrapper"
+      className={clsx('logo_wrapper', styles.logo_wrapper)}
       href="/"
       onClick={isOpen ? toggle : undefined}
-      style={{
-        width: '2.2rem',
-        height: '2.2rem',
-        zIndex: '3 !important',
-      }}
     >
       <Image
         className="logo"
