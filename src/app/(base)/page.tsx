@@ -60,6 +60,12 @@ export default async function Home() {
         </div>
 
         <div className={clsx('container', styles.container)}>
+          <h2 className="title highlight">tech stack 🦾</h2>
+
+          <Skills />
+        </div>
+
+        <div className={clsx('container', styles.container)}>
           <h2 className="title highlight">currently cooking 👨‍🍳</h2>
 
           <div className="text">
@@ -91,12 +97,6 @@ export default async function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
           </div>
-        </div>
-
-        <div className={clsx('container', styles.container)}>
-          <h2 className="title highlight">tech stack 🦾</h2>
-
-          <Skills />
         </div>
 
         <div className={clsx('container', styles.container)}>

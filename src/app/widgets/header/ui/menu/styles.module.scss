@@ -14,7 +14,8 @@
   opacity: 0;
   visibility: hidden;
 
-  background: rgba(#000, 0.95);
+  background: var(--bg-300);
+
   transition: opacity var(--duration), visibility var(--duration);
 
   @media (min-width: 769px) {
