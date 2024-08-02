@@ -20,7 +20,7 @@ const Logo = () => {
       style={{
         width: '2.2rem',
         height: '2.2rem',
-        zIndex: 2,
+        zIndex: '2 !important',
       }}
     >
       <Image
