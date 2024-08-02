@@ -4,12 +4,14 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import clsx from 'clsx';
+import Button from 'components/button';
 import Link from 'next/link';
 
+import { GoArrowUpRight } from 'react-icons/go';
 import { links as items } from '~/content/header';
 import styles from './styles.module.scss';
 
-export const Nav = () => {
+const Nav = () => {
   const pathname = usePathname();
 
   return (
@@ -32,6 +34,10 @@ export const Nav = () => {
           }),
         )}
       </ul>
+
+      <Button width={135} open="/cv/sherbolot-arbaev.pdf" pulseAnimation theme="blue">
+        Download CV <GoArrowUpRight size={19} />
+      </Button>
     </nav>
   );
 };

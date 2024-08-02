@@ -2,17 +2,25 @@
 
 import { siteConfig } from '~/config/site';
 
+import { useMenu } from 'providers/menu';
+
 import Image from 'next/image';
+import Link from 'next/link';
 
 import logo from 'public/images/logo.png';
 
-export const Logo = () => {
+const Logo = () => {
+  const { isOpen, toggle } = useMenu();
+
   return (
-    <div
+    <Link
       className="logo_wrapper"
+      href="/"
+      onClick={isOpen ? toggle : undefined}
       style={{
-        width: '2.5rem',
-        height: '2.5rem',
+        width: '2.2rem',
+        height: '2.2rem',
+        zIndex: 2,
       }}
     >
       <Image
@@ -22,7 +30,7 @@ export const Logo = () => {
         loading="lazy"
         layout="fill"
       />
-    </div>
+    </Link>
   );
 };
 export default Logo;

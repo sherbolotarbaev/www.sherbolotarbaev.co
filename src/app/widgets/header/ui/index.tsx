@@ -3,10 +3,11 @@
 import clsx from 'clsx';
 import { useHeaderFixed } from '../lib';
 
-import Button from 'components/button';
+import Burger from './burger';
+import Logo from './logo';
+import Menu from './menu';
 import Nav from './nav';
 
-import { GoArrowUpRight } from 'react-icons/go';
 import styles from './styles.module.scss';
 
 export const Header = () => {
@@ -21,22 +22,14 @@ export const Header = () => {
     >
       <div className="wrapper">
         <div className={clsx('container', styles.container)}>
-          <div className={styles.row}>
-            <Nav />
-          </div>
+          <Logo />
+          <Nav />
 
-          <div className={styles.row}>
-            <Button
-              width={195}
-              open="/cv/sherbolot-arbaev.pdf"
-              pulseAnimation
-              theme="blue"
-            >
-              Download CV <GoArrowUpRight size={19} />
-            </Button>
-          </div>
+          <Burger />
         </div>
       </div>
+
+      <Menu />
     </header>
   );
 };

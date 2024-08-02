@@ -133,6 +133,10 @@ body {
     outline: none;
     cursor: pointer;
 
+    @media (max-width: 768px) {
+      cursor: default;
+    }
+
     background: var(--bg-500);
     border: 1.2px solid var(--color-300);
     border-radius: var(--border-radius-300);
@@ -211,6 +215,10 @@ body {
     overflow: hidden;
 
     position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.gradient {
       background: url(https://yastatic.net/s3/kinopoisk-frontend/hd-www/release/_next/static/media/plus-xs.7cc3bd56.svg)

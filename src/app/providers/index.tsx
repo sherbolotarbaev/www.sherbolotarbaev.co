@@ -1,5 +1,6 @@
 'use client';
 
+import MenuProvider from './menu';
 import ReduxProvider from './redux';
 
 interface ProvidersProps {
@@ -7,6 +8,10 @@ interface ProvidersProps {
 }
 
 const Providers: React.FC<ProvidersProps> = ({ children }) => {
-  return <ReduxProvider>{children}</ReduxProvider>;
+  return (
+    <ReduxProvider>
+      <MenuProvider>{children}</MenuProvider>
+    </ReduxProvider>
+  );
 };
 export default Providers;

@@ -16,7 +16,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   pulseAnimation?: boolean;
 }
 
-type Theme = 'blue';
+type Theme = 'blue' | 'burger';
 
 const Button: React.FC<ButtonProps> = ({
   children,

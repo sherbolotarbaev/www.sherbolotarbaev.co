@@ -1,18 +1,28 @@
 .nav {
+  width: 100%;
   height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   .list {
     height: 100%;
 
     display: flex;
     align-items: center;
-    gap: 1.688rem;
 
     .item {
       height: 100%;
 
       .link {
         height: 100%;
+
+        padding: 0 1.065625rem;
 
         display: flex;
         align-items: center;

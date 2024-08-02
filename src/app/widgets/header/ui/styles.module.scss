@@ -12,9 +12,9 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 
-  &.started {
-    border-bottom: 0.8px solid var(--color-300);
-  }
+  // &.started {
+  //   border-bottom: 0.8px solid var(--color-300);
+  // }
 
   &.fixed {
     transform: translateY(-100%);
@@ -26,18 +26,12 @@
 }
 
 .container {
-  height: 4.28rem;
+  height: 3.55rem;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 1.25rem;
 
   transition: height var(--duration);
-
-  .row {
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-  }
 }

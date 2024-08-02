@@ -10,10 +10,6 @@
   justify-content: center;
   gap: 0.25rem;
 
-  @media (max-width: 768px) {
-    cursor: default;
-  }
-
   &.small {
     gap: 0.15rem;
 
