@@ -17,8 +17,12 @@ const Logo = () => {
   return (
     <Link
       className={clsx('logo_wrapper', styles.logo_wrapper)}
-      href="/"
       onClick={isOpen ? toggle : undefined}
+      href="/"
+      style={{
+        width: '2.2rem',
+        height: '2.2rem',
+      }}
     >
       <Image
         className="logo"
@@ -26,6 +30,8 @@ const Logo = () => {
         alt={siteConfig.name}
         loading="lazy"
         layout="fill"
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAT0lEQVR4nAFEALv/AAAAAADJyckztra2RgAAAAIAxMTEP+Li4vb9/f3/xsbGgwDDw8OK6+vr/83Nze2YmJiDAFxcXBtqampdQEBAGwAAAACyHSHCm4RaSAAAAABJRU5ErkJggg=="
       />
     </Link>
   );

@@ -18,7 +18,7 @@ const Grid = dynamic(() => import('components/grid'), {
   loading: () => <GridLoad images={images} />,
 });
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <div className={clsx('wrapper', styles.wrapper)}>

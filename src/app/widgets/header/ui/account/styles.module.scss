@@ -11,6 +11,9 @@
   }
 
   .logo_wrapper {
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+
     cursor: pointer;
 
     @media (max-width: 768px) {
