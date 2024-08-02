@@ -69,33 +69,24 @@ export default async function Home() {
           <h2 className="title highlight">currently cooking 👨‍🍳</h2>
 
           <div className="text">
-            <Link className="subtitle link" href="">
-              Some project
+            <Link className="subtitle link" href="https://github.com/sherbolotarbaev/api">
+              Personal API
             </Link>
 
             <p className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              built with Nest JS, TypeScript, Prisma, PostgreSQL and Supabase.
             </p>
           </div>
 
           <div className="text">
-            <Link className="subtitle link" href="">
-              Some project
+            <Link
+              className="subtitle link"
+              href="https://github.com/sherbolotarbaev/chinatradex"
+            >
+              China TradeX
             </Link>
 
-            <p className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
-
-          <div className="text">
-            <Link className="subtitle link" href="">
-              Some project
-            </Link>
-
-            <p className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
+            <p className="desc">Business with China - Alibaba | 1688 | Poizon | Taobao</p>
           </div>
         </div>
 
