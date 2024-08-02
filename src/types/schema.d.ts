@@ -19,6 +19,7 @@ type UserMetaData = {
   country?: string;
   timezone?: string;
   lastSeen: Date;
+  device?: string;
 };
 
 type GuestbookMessage = {
