@@ -8,16 +8,6 @@ export async function getMe(_request: GetMeRequest): Promise<GetMeResponse | und
 
   if (!session) return;
 
-  // const { os, device } = getUserAgent({ headers: requestHeaders() });
-  // const userAgent = `${os.name} ${os.version} (${device.vendor}, ${device.model})`;
-  // const xff = `${(cookies().get('x-forwarded-for')?.value ?? '127.0.0.1').split(',')[0]}`;
-
-  // const headers = new Headers();
-
-  // headers.append('x-forwarded-for', xff);
-  // headers.append('user-agent', userAgent);
-  // headers.append('cookie', `session=${session.value}`);
-
   noStore();
 
   try {
