@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { getCookie } from 'cookies-next';
 
 import Button from '~/app/components/button';
 
@@ -11,11 +12,17 @@ interface GuestbookClientProps {
 }
 
 export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) {
+  const ip = getCookie('x-forwarded-for');
+
   return (
     <>
       <div className={clsx('wrapper', styles.wrapper)}>
         <div className={clsx('container', styles.container)}>
           <h2 className="title">sign my guestbook</h2>
+
+          <p className="desc">
+            Your IP {ip} | IP from server {me?.metaData.ip}
+          </p>
 
           {me ? (
             <p className="desc">Welcome back {me.name}!</p>
