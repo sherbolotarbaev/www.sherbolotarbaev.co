@@ -11,9 +11,7 @@ export async function getMe(_request: GetMeRequest): Promise<GetMeResponse | und
 
   const { os, device } = getUserAgent({ headers: requestHeaders() });
   const userAgent = `${os.name} ${os.version} (${device.vendor}, ${device.model})`;
-  const xff = `${
-    (requestHeaders().get('x-forwarded-for') ?? '127.0.0.1')?.split(',')[0]
-  }`;
+  const xff = `${(cookies().get('x-forwarded-for')?.value ?? '127.0.0.1').split(',')[0]}`;
 
   const headers = new Headers();
 
