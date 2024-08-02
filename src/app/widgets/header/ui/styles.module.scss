@@ -26,7 +26,7 @@
 }
 
 .container {
-  height: 3.55rem;
+  height: 3.95rem;
 
   display: flex;
   align-items: center;
@@ -34,4 +34,14 @@
   gap: 1.25rem;
 
   transition: height var(--duration);
+
+  @media (max-width: 768px) {
+    height: 3.45rem;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
 }

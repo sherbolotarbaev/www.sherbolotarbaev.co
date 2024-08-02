@@ -24,7 +24,7 @@ export default async function Home() {
       <div className={clsx('wrapper', styles.wrapper)}>
         <div className={clsx('container', styles.container)}>
           <div className={styles.content_container}>
-            <div className="logo_wrapper gradient">
+            <div className="logo_wrapper">
               <Image
                 className="logo"
                 src={sherbolot}
@@ -69,7 +69,11 @@ export default async function Home() {
           <h2 className="title highlight">currently cooking 👨‍🍳</h2>
 
           <div className="text">
-            <Link className="subtitle link" href="https://github.com/sherbolotarbaev/api">
+            <Link
+              className="subtitle link"
+              target="_blank"
+              href="https://github.com/sherbolotarbaev/api"
+            >
               Personal API
             </Link>
 
@@ -81,6 +85,7 @@ export default async function Home() {
           <div className="text">
             <Link
               className="subtitle link"
+              target="_blank"
               href="https://github.com/sherbolotarbaev/chinatradex"
             >
               China TradeX

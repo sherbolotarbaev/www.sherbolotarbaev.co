@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { useHeaderFixed } from '../lib';
 
+import Account from './account';
 import Burger from './burger';
 import Logo from './logo';
 import Menu from './menu';
@@ -10,7 +11,11 @@ import Nav from './nav';
 
 import styles from './styles.module.scss';
 
-export const Header = () => {
+interface HeaderProps {
+  me?: User | undefined;
+}
+
+export const Header: React.FC<HeaderProps> = ({ me }) => {
   const { isFixed, isStarted } = useHeaderFixed();
 
   return (
@@ -25,7 +30,10 @@ export const Header = () => {
           <Logo />
           <Nav />
 
-          <Burger />
+          <div className={styles.row}>
+            <Account me={me} />
+            <Burger />
+          </div>
         </div>
       </div>
 
