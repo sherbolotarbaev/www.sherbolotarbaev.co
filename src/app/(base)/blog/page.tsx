@@ -20,7 +20,7 @@ export default async function Blog() {
     <>
       <div className={clsx('wrapper', styles.wrapper)}>
         <div className={clsx('container', styles.container)}>
-          <h2 className="title">Personal blog</h2>
+          <h2 className="title">personal blog</h2>
 
           <Posts items={blogPosts} views={views} />
         </div>
