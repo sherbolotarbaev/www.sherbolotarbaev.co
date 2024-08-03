@@ -1,0 +1,65 @@
+.experience {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.85rem;
+
+  .job {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+
+    padding-bottom: 2.55rem;
+
+    border-bottom: 0.8px solid var(--color-300);
+
+    &:last-child {
+      padding-bottom: 0;
+
+      border-bottom: 0;
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .date {
+        font-weight: 400;
+        color: var(--color-400);
+      }
+    }
+
+    .role {
+      font-weight: 400;
+      color: var(--color-400);
+    }
+
+    .desc {
+      line-height: 1.35rem;
+
+      font-size: 0.875rem;
+      color: var(--color-600);
+
+      span {
+        font-weight: 500;
+        color: var(--color-800);
+      }
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      color: var(--blue-color);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

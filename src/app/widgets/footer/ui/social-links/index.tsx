@@ -12,11 +12,11 @@ export const SocialLinks = () => {
   return (
     <ul className={clsx('list-reset', styles.list)}>
       {React.Children.toArray(
-        items.map((item) => (
-          <li className={styles.item} key={item.name}>
-            <Link className={clsx('link', styles.link)} href={item.href} target="_blank">
+        items.map(({ name, href }) => (
+          <li className={styles.item} key={name}>
+            <Link className={clsx('link', styles.link)} href={href} target="_blank">
               <GoArrowUpRight size={19} />
-              {item.name}
+              {name}
             </Link>
           </li>
         )),

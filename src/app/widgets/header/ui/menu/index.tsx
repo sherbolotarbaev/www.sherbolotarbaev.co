@@ -26,11 +26,11 @@ const Menu = () => {
         <div className={clsx('container', styles.container)}>
           <ul className={clsx('list-reset', styles.list)}>
             {React.Children.toArray(
-              items.map((item) => {
-                const isCurrentPage = pathname === item.href;
+              items.map(({ name, href }) => {
+                const isCurrentPage = pathname === href;
 
                 return (
-                  <li className={styles.item} key={item.name}>
+                  <li className={styles.item} key={name}>
                     <Link
                       className={clsx(
                         'link',
@@ -38,9 +38,9 @@ const Menu = () => {
                         isCurrentPage && styles.isCurrent,
                       )}
                       onClick={toggle}
-                      href={item.href}
+                      href={href}
                     >
-                      {item.name}
+                      {name}
                     </Link>
                   </li>
                 );

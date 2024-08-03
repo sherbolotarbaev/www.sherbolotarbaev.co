@@ -18,16 +18,16 @@ const Nav = () => {
     <nav className={styles.nav}>
       <ul className={clsx('list-reset', styles.list)}>
         {React.Children.toArray(
-          items.map((item) => {
-            const isCurrentPage = pathname === item.href;
+          items.map(({ name, href }) => {
+            const isCurrentPage = pathname === href;
 
             return (
-              <li className={styles.item} key={item.name}>
+              <li className={styles.item} key={name}>
                 <Link
                   className={clsx('link', styles.link, isCurrentPage && styles.isCurrent)}
-                  href={item.href}
+                  href={href}
                 >
-                  {item.name}
+                  {name}
                 </Link>
               </li>
             );

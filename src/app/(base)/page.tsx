@@ -6,6 +6,7 @@ import Badge from 'components/badge';
 import { GridLoad } from 'components/grid';
 import Image from 'next/image';
 import Link from 'next/link';
+import Experience from './components/experience';
 import Skills from './components/skills';
 
 import sherbolot from 'public/images/sherbolot.webp';
@@ -66,6 +67,12 @@ export default function Home() {
         </div>
 
         <div className={clsx('container', styles.container)}>
+          <h2 className="title highlight">my experience 🧠</h2>
+
+          <Experience />
+        </div>
+
+        <div className={clsx('container', styles.container)}>
           <h2 className="title highlight">currently cooking 👨‍🍳</h2>
 
           <div className="text">
@@ -106,7 +113,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* <Grid images={images} /> */}
+          <Grid images={images} />
         </div>
       </div>
     </>
