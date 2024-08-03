@@ -27,14 +27,15 @@ interface IconProps {
   name: string;
   module: string;
   size?: number;
+  color?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ name, module, size }) => {
+const Icon: React.FC<IconProps> = ({ name, module, size, color }) => {
   const IconComponent = loadIcon(name, module);
 
   return (
     <Suspense fallback={null}>
-      <IconComponent size={size} />
+      <IconComponent size={size} color={color} />
     </Suspense>
   );
 };

@@ -12,9 +12,9 @@ const Skills = () => {
   return (
     <div className={styles.skills}>
       {React.Children.toArray(
-        items.map((skill) => (
-          <Link href={skill.href} className={styles.skill}>
-            {<Icon size={18} name={skill.iconName} module="si" />} {skill.name}
+        items.map(({ name, href, iconName, iconColor }) => (
+          <Link className={styles.skill} href={href} target="_blank">
+            {<Icon size={18} name={iconName} color={iconColor} module="si" />} {name}
           </Link>
         )),
       )}
