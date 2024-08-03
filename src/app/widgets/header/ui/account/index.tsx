@@ -10,6 +10,7 @@ import { useHeaderFixed } from 'widgets/header/lib';
 import Button from 'components/button';
 import Image from 'next/image';
 
+import { MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
 interface AccountProps {
@@ -92,8 +93,12 @@ const Account: React.FC<AccountProps> = ({ me, close }) => {
             />
           </div>
 
-          <div className={styles.name}>
-            {me.name} {me.surname}
+          <div className={styles.user}>
+            <span className={styles.name}>
+              {me.name} {me.surname}
+              {me.isVerified && <MdVerified color="var(--color-code-markup-heading)" />}
+            </span>
+
             <span className={styles.joined}>
               Joined {formatDate2(me.createdAt.toString())}
             </span>
