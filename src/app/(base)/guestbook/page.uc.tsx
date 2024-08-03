@@ -2,7 +2,9 @@
 
 import clsx from 'clsx';
 
-import Button from '~/app/components/button';
+import Button from 'components/button';
+import Form from './components/form';
+import Messages from './components/messages';
 
 import styles from './styles.module.scss';
 
@@ -18,11 +20,7 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
           <h2 className="title">sign my guestbook</h2>
 
           {me ? (
-            <p className="desc">
-              Welcome back {me.name}! I see {"you're"} currently in {me.metaData.city},{' '}
-              {me.metaData.country}. Your device: {me.metaData.device} | timezone:{' '}
-              {me.metaData.timezone}
-            </p>
+            <Form />
           ) : (
             <Button
               redirect={`${process.env.NEXT_PUBLIC_AUTH_URL}/sign-in?next=/guestbook`}
@@ -31,6 +29,8 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
               Sign in
             </Button>
           )}
+
+          <Messages />
         </div>
       </div>
     </>

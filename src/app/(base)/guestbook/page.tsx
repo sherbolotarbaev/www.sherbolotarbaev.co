@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { getMe } from '@/redux/api/me/server';
+import { getMe } from '~/app/redux/api/me/ssr';
 import GuestbookClient from './page.uc';
 
 export const metadata: Metadata = {

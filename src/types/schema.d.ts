@@ -22,18 +22,20 @@ type UserMetaData = {
   device?: string;
 };
 
+type GuestbookAuthor = {
+  name: string;
+  email: string;
+  photo: string;
+  isVerified: boolean;
+};
+
 type GuestbookMessage = {
   id: number;
   message: string;
   isEdited: boolean;
   createdAt: string;
   updatedAt: string;
-  author: {
-    name: string;
-    email: string;
-    photo: string;
-    isVerified: boolean;
-  };
+  author: GuestbookAuthor;
 };
 
 type View = {

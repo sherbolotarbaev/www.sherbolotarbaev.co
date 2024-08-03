@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '~/config/site';
 
-import { getViews } from '@/redux/api/blog/server';
 import clsx from 'clsx';
 import { notFound, redirect } from 'next/navigation';
+import { getViews } from '~/app/redux/api/blog/ssr';
 
-import { getMe } from '@/redux/api/me/server';
 import { getBlogPosts } from 'shared/lib/blog';
 import { getBase64 } from 'shared/lib/blur-data-url';
 import { formatDate, formatDate2 } from 'shared/lib/date';
+import { getMe } from '~/app/redux/api/me/ssr';
 
 import MDXContent from 'components/mdx';
 import Image from 'next/image';

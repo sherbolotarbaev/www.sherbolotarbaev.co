@@ -59,7 +59,7 @@ const Account: React.FC<AccountProps> = ({ me, close }) => {
 
   return (
     <div
-      className={clsx(styles.wrapper, isOpen && styles.active)}
+      className={clsx(styles.account, isOpen && styles.active)}
       onClick={(e) => e.stopPropagation()}
       ref={accountMenuRef}
     >

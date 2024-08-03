@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { getBlogPosts } from 'shared/lib/blog';
 
-import { getViews } from '@/redux/api/blog/server';
+import { getViews } from '~/app/redux/api/blog/ssr';
 
 import Posts from './components/posts';
 

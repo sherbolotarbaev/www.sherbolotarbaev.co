@@ -5,7 +5,7 @@ import { cookies, headers as requestHeaders } from 'next/headers';
 import { userAgent as getUserAgent } from 'next/server';
 
 export async function getMe(_request: GetMeRequest): Promise<GetMeResponse | undefined> {
-  const session = cookies().get('session');
+  const session = cookies().get('session')?.value;
   if (!session) return;
 
   noStore();
@@ -16,6 +16,7 @@ export async function getMe(_request: GetMeRequest): Promise<GetMeResponse | und
   try {
     const headers = new Headers(requestHeaders());
     headers.set('user-agent', userAgent);
+    headers.set('cookie', `session=${encodeURIComponent(session)}`);
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/me`, {
       method: 'GET',

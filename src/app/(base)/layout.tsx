@@ -1,4 +1,4 @@
-import { getMe } from '@/redux/api/me/server';
+import { getMe } from '~/app/redux/api/me/ssr';
 
 import { Footer } from 'widgets/footer';
 import { Header } from 'widgets/header';
