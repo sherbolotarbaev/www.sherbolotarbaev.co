@@ -22,12 +22,21 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
           {me ? (
             <Form />
           ) : (
-            <Button
-              redirect={`${process.env.NEXT_PUBLIC_AUTH_URL}/sign-in?next=/guestbook`}
-              width={120}
-            >
-              Sign in
-            </Button>
+            <>
+              <div className="text">
+                <p className="desc">
+                  Share your feedback, questions, collaborations, or just say hi. I am
+                  eager to hear from you. Sign in to leave your message!
+                </p>
+              </div>
+
+              <Button
+                redirect={`${process.env.NEXT_PUBLIC_AUTH_URL}/sign-in?next=/guestbook`}
+                width={120}
+              >
+                Sign in
+              </Button>
+            </>
           )}
 
           <Messages />

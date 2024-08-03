@@ -1,0 +1,2 @@
+export const MIN_LOAD_MESSAGES_COUNT = 5;
+export const MAX_LOAD_MESSAGES_COUNT = 25;

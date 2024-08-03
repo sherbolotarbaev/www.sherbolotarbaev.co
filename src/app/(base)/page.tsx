@@ -106,7 +106,7 @@ export default function Home() {
             </p>
           </div>
 
-          <Grid images={images} />
+          {/* <Grid images={images} /> */}
         </div>
       </div>
     </>

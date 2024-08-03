@@ -5,6 +5,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useGetGuestbookMessagesQuery } from '@/redux/api/guestbook';
 import clsx from 'clsx';
 import { formatDate } from 'shared/lib/date';
+import { MAX_LOAD_MESSAGES_COUNT, MIN_LOAD_MESSAGES_COUNT } from './constants';
 
 import Image from 'next/image';
 
@@ -17,14 +18,18 @@ interface MessagesProps {
 }
 
 const Messages: React.FC<MessagesProps> = ({ me }) => {
-  const [take, setTake] = useState<number>(25);
+  const [take, setTake] = useState<number>(MAX_LOAD_MESSAGES_COUNT);
   const { data, isLoading, isError, isFetching, refetch } = useGetGuestbookMessagesQuery({
     take,
   });
 
   const handleLoadMore = useCallback(() => {
     setTake(
-      (prevTake) => prevTake + (data ? Math.min(5, data.totalCount - data.count) : 5),
+      (prevTake) =>
+        prevTake +
+        (data
+          ? Math.min(MIN_LOAD_MESSAGES_COUNT, data.totalCount - data.count)
+          : MIN_LOAD_MESSAGES_COUNT),
     );
     refetch();
   }, [refetch]);
@@ -69,10 +74,12 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
     <div className={styles.messages}>
       {messages}
 
-      {isLoading && !data && <LoadingMessages count={5} />}
+      {isLoading && !data && <LoadingMessages count={MIN_LOAD_MESSAGES_COUNT} />}
 
       {isFetching && data && !isLoading && (
-        <LoadingMessages count={Math.min(5, data.totalCount - data.count)} />
+        <LoadingMessages
+          count={Math.min(MIN_LOAD_MESSAGES_COUNT, data.totalCount - data.count)}
+        />
       )}
 
       {!isLoading && data && data.count !== data.totalCount && !isFetching && (

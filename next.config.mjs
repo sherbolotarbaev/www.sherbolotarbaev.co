@@ -5,7 +5,7 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     domains: [
-      'www.sherbolotarbaev.co',
+      'sherbolotarbaev.co',
       'lh3.googleusercontent.com',
       'avatars.githubusercontent.com',
     ],
