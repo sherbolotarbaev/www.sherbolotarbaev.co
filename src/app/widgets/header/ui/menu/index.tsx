@@ -48,7 +48,7 @@ const Menu = () => {
             )}
           </ul>
 
-          <Button open="/cv/sherbolot-arbaev.pdf" pulseAnimation theme="blue">
+          <Button open="/cv/Sherbolot-Arbaev.pdf" pulseAnimation theme="blue">
             Download CV <GoArrowUpRight size={19} />
           </Button>
         </div>

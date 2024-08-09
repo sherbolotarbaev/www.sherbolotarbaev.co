@@ -35,7 +35,7 @@ const Nav = () => {
         )}
       </ul>
 
-      <Button width={135} open="/cv/sherbolot-arbaev.pdf" pulseAnimation theme="blue">
+      <Button width={135} open="/cv/Sherbolot-Arbaev.pdf" pulseAnimation theme="blue">
         Download CV <GoArrowUpRight size={19} />
       </Button>
     </nav>
