@@ -3,9 +3,9 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
+import { useLogoutMutation } from '@/redux/api/auth';
 import clsx from 'clsx';
 import { formatDate2 } from 'shared/lib/date';
-import { useHeaderFixed } from 'widgets/header/lib';
 
 import Button from 'components/button';
 import Image from 'next/image';
@@ -21,8 +21,6 @@ interface AccountProps {
 const Account: React.FC<AccountProps> = ({ me, close }) => {
   const pathname = usePathname();
 
-  const { isFixed } = useHeaderFixed();
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const accountMenuRef = useRef<HTMLDivElement>(null);
 
@@ -30,11 +28,20 @@ const Account: React.FC<AccountProps> = ({ me, close }) => {
     setIsOpen(!isOpen);
   };
 
+  const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+    } catch (_) {}
+    window?.location?.reload();
+  };
+
   useEffect(() => {
-    if (close || isFixed) {
+    if (close) {
       setIsOpen(false);
     }
-  }, [close, isFixed]);
+  }, [close]);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -107,7 +114,7 @@ const Account: React.FC<AccountProps> = ({ me, close }) => {
           <div className={styles.email}>{me.email}</div>
         </div>
 
-        <Button redirect={`${process.env.NEXT_PUBLIC_API_URL}/logout?next=${pathname}`}>
+        <Button onClick={handleLogout} load={isLoggingOut}>
           Log out
         </Button>
       </div>

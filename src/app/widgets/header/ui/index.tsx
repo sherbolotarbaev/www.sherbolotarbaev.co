@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+
 import { useHeaderFixed } from '../lib';
 
 import Account from './account';
@@ -31,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ me }) => {
           <Nav />
 
           <div className={styles.row}>
-            <Account me={me} />
+            <Account me={me} close={isFixed || isStarted} />
             <Burger />
           </div>
         </div>
