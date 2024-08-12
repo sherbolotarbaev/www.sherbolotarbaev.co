@@ -41,4 +41,5 @@ const Modal = forwardRef<HTMLDivElement, PropsWithChildren<ModalProps>>(
     );
   },
 );
+Modal.displayName = 'Modal'; // fix: build issue
 export default Modal;
