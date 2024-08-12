@@ -16,6 +16,7 @@ const Portal: React.FC<PortalProps> = ({ rootId, children }) => {
     setMounted(true);
     containerRef.current = document.querySelector(`${rootId}`);
     return () => setMounted(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return mounted && Boolean(containerRef.current)

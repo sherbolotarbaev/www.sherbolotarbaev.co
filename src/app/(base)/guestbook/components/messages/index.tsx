@@ -115,7 +115,7 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
         </div>
       )),
     );
-  }, [data, isLoading, isError]);
+  }, [me, data, isLoading, isError]);
 
   return (
     <>
