@@ -12,11 +12,7 @@ import Nav from './nav';
 
 import styles from './styles.module.scss';
 
-interface HeaderProps {
-  me?: User | undefined;
-}
-
-export const Header: React.FC<HeaderProps> = ({ me }) => {
+export const Header = () => {
   const { isFixed, isStarted } = useHeaderFixed();
 
   return (
@@ -32,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ me }) => {
           <Nav />
 
           <div className={styles.row}>
-            <Account me={me} close={isFixed || isStarted} />
+            <Account close={isFixed || isStarted} />
             <Burger />
           </div>
         </div>

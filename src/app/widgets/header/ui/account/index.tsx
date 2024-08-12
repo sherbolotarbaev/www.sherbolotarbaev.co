@@ -1,9 +1,9 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import { useLogoutMutation } from '@/redux/api/auth';
+import { useGetMeQuery } from '@/redux/api/me';
 import clsx from 'clsx';
 import { formatDate2 } from 'shared/lib/date';
 
@@ -14,12 +14,11 @@ import { MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
 interface AccountProps {
-  me?: User | undefined;
   close?: boolean;
 }
 
-const Account: React.FC<AccountProps> = ({ me, close }) => {
-  const pathname = usePathname();
+const Account: React.FC<AccountProps> = ({ close }) => {
+  const { data: me } = useGetMeQuery();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const accountMenuRef = useRef<HTMLDivElement>(null);
