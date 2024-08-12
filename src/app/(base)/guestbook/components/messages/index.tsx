@@ -3,8 +3,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 import {
+  useAddMessageLikeMutation,
   useDeleteGuestbookMessageMutation,
   useGetGuestbookMessagesQuery,
+  useRemoveMessageLikeMutation,
 } from '@/redux/api/guestbook';
 import clsx from 'clsx';
 import { formatDate } from 'shared/lib/date';
@@ -15,11 +17,14 @@ import Button from 'components/button';
 import Popup from 'components/popup';
 import Image from 'next/image';
 
-import { BiChevronDown } from 'react-icons/bi';
+import { BiChevronDown, BiLike } from 'react-icons/bi';
 import { MdDeleteOutline, MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
-type SelectedMessage = Omit<GuestbookMessage, 'updatedAt' | 'isEdited' | 'likesCount'>;
+type SelectedMessage = Omit<
+  GuestbookMessage,
+  'updatedAt' | 'isEdited' | 'likesCount' | 'hasLiked'
+>;
 
 interface MessagesProps {
   me?: User | undefined;
@@ -28,35 +33,71 @@ interface MessagesProps {
 const Messages: React.FC<MessagesProps> = ({ me }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedMessage, setSelectedMessage] = useState<SelectedMessage | null>(null);
-
   const [take, setTake] = useState<number>(MAX_LOAD_MESSAGES_COUNT);
+
   const { data, isLoading, isError, isFetching, refetch } = useGetGuestbookMessagesQuery({
     take,
   });
   const [deleteMessage, { isLoading: isDeleting }] = useDeleteGuestbookMessageMutation();
+  const [addLike] = useAddMessageLikeMutation();
+  const [removeLike] = useRemoveMessageLikeMutation();
 
-  const handleSelectMessage = (message: SelectedMessage | null) => {
+  const [messageLikes, setMessageLikes] = useState<
+    Map<number, { count: number; liked: boolean }>
+  >(new Map());
+
+  const handleSelectMessage = useCallback((message: SelectedMessage | null) => {
     setSelectedMessage(message);
-  };
+  }, []);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const handleOpenModal = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
 
-  const handleDeleteMessage = (id: number) => {
-    toast.promise(deleteMessage(id).unwrap(), {
-      position: 'bottom-right',
-      loading: 'Deleting...',
-      success: () => {
-        setIsModalOpen(false);
-        setSelectedMessage(null);
-        return 'Successfully deleted';
-      },
-      error: (error) => {
-        return error.data?.message || 'Try again. Something happened on our end';
-      },
-    });
-  };
+  const handleDeleteMessage = useCallback(
+    (id: number) => {
+      toast.promise(deleteMessage(id).unwrap(), {
+        position: 'bottom-right',
+        loading: 'Deleting...',
+        success: () => {
+          setIsModalOpen(false);
+          setSelectedMessage(null);
+          return 'Successfully deleted';
+        },
+        error: (error) =>
+          error.data?.message || 'Try again. Something happened on our end',
+      });
+    },
+    [deleteMessage],
+  );
+
+  const handleLike = useCallback(
+    async (id: number, currentLikes: number, isLiked: boolean) => {
+      setMessageLikes((prev) =>
+        new Map(prev).set(id, {
+          count: isLiked ? currentLikes - 1 : currentLikes + 1,
+          liked: !isLiked,
+        }),
+      );
+
+      try {
+        if (isLiked) {
+          await removeLike({ id }).unwrap();
+        } else {
+          await addLike({ id }).unwrap();
+        }
+      } catch (error) {
+        setMessageLikes((prev) =>
+          new Map(prev).set(id, {
+            count: isLiked ? currentLikes : currentLikes > 0 ? currentLikes - 1 : 0,
+            liked: isLiked,
+          }),
+        );
+        console.error('Failed to update like:', error);
+      }
+    },
+    [addLike, removeLike],
+  );
 
   const handleLoadMore = useCallback(() => {
     setTake(
@@ -72,50 +113,66 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
   const messages = useMemo(() => {
     if (!data || isLoading || isError) return null;
     return React.Children.toArray(
-      data.items.map(({ id, message, createdAt, author }) => (
-        <div className={styles.message}>
-          {author.photo && (
-            <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
-              <Image
-                className="logo"
-                width={30}
-                height={30}
-                src={author.photo}
-                alt={author.name || 'User'}
-                loading="lazy"
-              />
+      data.items.map(({ id, message, createdAt, author, likesCount, hasLiked }) => {
+        const localLikes = messageLikes.get(id) || { count: likesCount, liked: hasLiked };
+
+        return (
+          <div key={id} className={styles.message}>
+            {author.photo && (
+              <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
+                <Image
+                  className="logo"
+                  width={30}
+                  height={30}
+                  src={author.photo}
+                  alt={author.name || 'User'}
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            <div className={styles.info}>
+              <div className={styles.name}>
+                {author.name}
+
+                {author.isVerified && (
+                  <MdVerified color="var(--color-code-markup-heading)" />
+                )}
+
+                <span className={styles.created_at}>{formatDate(createdAt)}</span>
+              </div>
+
+              {message}
             </div>
-          )}
 
-          <div className={styles.info}>
-            <div className={styles.name}>
-              {author.name}
+            <div className={styles.metadata}>
+              <span
+                className={styles.likes}
+                onClick={() => {
+                  if (!me) return;
+                  handleLike(id, localLikes.count, localLikes.liked);
+                }}
+              >
+                <BiLike /> {localLikes.count}
+              </span>
 
-              {author.isVerified && (
-                <MdVerified color="var(--color-code-markup-heading)" />
+              {me && me.email === author.email && (
+                <span
+                  className={styles.del}
+                  onClick={() => {
+                    setIsModalOpen(true);
+                    handleSelectMessage({ id, message, author, createdAt });
+                  }}
+                >
+                  <MdDeleteOutline />
+                </span>
               )}
-
-              <span className={styles.created_at}>{formatDate(createdAt)}</span>
             </div>
-
-            {message}
           </div>
-
-          {me && me.email === author.email && (
-            <span
-              className={styles.del}
-              onClick={() => {
-                setIsModalOpen(true);
-                handleSelectMessage({ id, message, author, createdAt });
-              }}
-            >
-              <MdDeleteOutline />
-            </span>
-          )}
-        </div>
-      )),
+        );
+      }),
     );
-  }, [me, data, isLoading, isError]);
+  }, [me, data, isLoading, isError, handleLike, messageLikes]);
 
   return (
     <>

@@ -34,6 +34,7 @@ type GuestbookMessage = {
   message: string;
   isEdited: boolean;
   likesCount: number;
+  hasLiked: boolean;
   createdAt: string;
   updatedAt: string;
   author: GuestbookAuthor;

@@ -71,25 +71,44 @@
       }
     }
 
-    .del {
+    .metadata {
       margin-left: auto;
       margin-bottom: auto;
-      padding: 0.15rem;
-
-      cursor: pointer;
-      @media (max-width: 768px) {
-        cursor: default;
-      }
 
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 0.25rem;
 
-      background: var(--bg-red);
-      border-radius: var(--border-radius-200);
+      .del,
+      .likes {
+        padding: 0.15rem;
 
-      font-size: 1.15rem;
-      color: var(--red-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.15rem;
+
+        cursor: pointer;
+        @media (max-width: 768px) {
+          cursor: default;
+        }
+
+        border-radius: var(--border-radius-200);
+
+        font-size: 1rem;
+      }
+
+      .del {
+        background: var(--bg-red);
+
+        color: var(--red-color);
+      }
+
+      .likes {
+        background: var(--bg-500);
+
+        color: var(--color-600);
+      }
     }
   }
 }
