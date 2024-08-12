@@ -47,6 +47,33 @@ const api = index.injectEndpoints({
       }),
       providesTags: ['guestbook'],
     }),
+
+    addMessageLike: build.mutation<AddMessageLikeResponse, AddMessageLikeRequest>({
+      query: (params) => ({
+        url: `/likes/${params.id}`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['guestbook'],
+    }),
+
+    removeMessageLike: build.mutation<
+      RemoveMessageLikeResponse,
+      RemoveMessageLikeRequest
+    >({
+      query: (params) => ({
+        url: `/likes/${params.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['guestbook'],
+    }),
+
+    getMessageLikes: build.query<GetMessageLikesResponse, GetMessageLikesRequest>({
+      query: (params) => ({
+        url: `/likes/${params.id}`,
+        method: 'GET',
+      }),
+      providesTags: ['guestbook'],
+    }),
   }),
 });
 
@@ -55,5 +82,8 @@ export const {
   useDeleteGuestbookMessageMutation,
   useUpdateGuestbookMessageMutation,
   useGetGuestbookMessagesQuery,
+  useAddMessageLikeMutation,
+  useRemoveMessageLikeMutation,
+  useGetMessageLikesQuery,
 } = api;
 export default api;

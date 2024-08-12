@@ -21,3 +21,21 @@ type GetGuestbookMessagesResponse = {
   count: number;
   items: GuestbookMessage[];
 };
+
+type AddMessageLikeRequest = {
+  id: number;
+};
+
+type AddMessageLikeResponse = LikeMessage;
+
+type RemoveMessageLikeRequest = {
+  id: number;
+};
+
+type RemoveMessageLikeResponse = LikeMessage;
+
+type GetMessageLikesRequest = {
+  id: number;
+};
+
+type GetMessageLikesResponse = LikeMessage[];

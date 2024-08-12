@@ -19,7 +19,7 @@ import { BiChevronDown } from 'react-icons/bi';
 import { MdDeleteOutline, MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
-type SelectedMessage = Omit<GuestbookMessage, 'updatedAt' | 'isEdited'>;
+type SelectedMessage = Omit<GuestbookMessage, 'updatedAt' | 'isEdited' | 'likesCount'>;
 
 interface MessagesProps {
   me?: User | undefined;
