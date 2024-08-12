@@ -15,7 +15,10 @@ export default function RootLayoutClient({ children }: Readonly<RootLayoutClient
   return (
     <>
       <TopLoadingBar color="var(--blue-color)" showSpinner={false} height={3} />
-      <Providers>{children}</Providers>
+      <Providers>
+        <div id="modal"></div>
+        {children}
+      </Providers>
       <Toaster />
       <Analytics />
       <SpeedInsights />

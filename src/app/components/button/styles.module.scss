@@ -100,4 +100,33 @@
       }
     }
   }
+
+  &.red {
+    background: var(--bg-red);
+    border-color: var(--red-outline-color);
+
+    &:hover {
+      background: var(--bg-red-hover);
+    }
+
+    &:active {
+      background: var(--bg-red-active);
+    }
+
+    &.disabled,
+    &.load {
+      background: var(--bg-red-hover);
+
+      cursor: not-allowed;
+
+      color: var(--color-600);
+
+      &:hover,
+      &:active {
+        background: var(--bg-red-hover);
+
+        color: var(--color-600);
+      }
+    }
+  }
 }

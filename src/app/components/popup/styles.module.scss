@@ -1,0 +1,49 @@
+.modal {
+  min-width: var(--min-width);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  text-align: center;
+
+  &:before {
+    content: '';
+
+    height: 100%;
+
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &:after {
+    content: '';
+
+    display: block;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    cursor: pointer;
+
+    background: rgba(#000, 0.4);
+  }
+
+  .container {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+
+    position: relative;
+    z-index: 2;
+  }
+}

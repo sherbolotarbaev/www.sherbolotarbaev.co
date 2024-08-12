@@ -9,6 +9,7 @@ import styles from './styles.module.scss';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   width?: number;
   load?: boolean;
+  loadText?: string;
   redirect?: string;
   open?: string;
   theme?: Theme;
@@ -16,12 +17,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   pulseAnimation?: boolean;
 }
 
-type Theme = 'blue';
+type Theme = 'blue' | 'red';
 
 const Button: React.FC<ButtonProps> = ({
   children,
   width,
   load = false,
+  loadText,
   redirect,
   open,
   theme,
@@ -63,7 +65,13 @@ const Button: React.FC<ButtonProps> = ({
       className={className}
       disabled={load || props.disabled}
     >
-      {load ? <BiLoader size={19} className={styles.loader} /> : children}
+      {load ? (
+        <>
+          <BiLoader size={15} className={styles.loader} /> {loadText}
+        </>
+      ) : (
+        children
+      )}
     </button>
   );
 };

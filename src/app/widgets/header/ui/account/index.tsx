@@ -113,7 +113,7 @@ const Account: React.FC<AccountProps> = ({ close }) => {
           <div className={styles.email}>{me.email}</div>
         </div>
 
-        <Button onClick={handleLogout} load={isLoggingOut}>
+        <Button onClick={handleLogout} load={isLoggingOut} loadText="Logging out...">
           Log out
         </Button>
       </div>

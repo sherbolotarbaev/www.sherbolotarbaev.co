@@ -1,0 +1,9 @@
+.modal {
+  opacity: 0;
+
+  transition: opacity var(--duration);
+
+  &.done {
+    opacity: 1;
+  }
+}
