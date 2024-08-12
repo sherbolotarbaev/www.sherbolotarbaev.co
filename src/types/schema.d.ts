@@ -33,6 +33,7 @@ type GuestbookMessage = {
   id: number;
   message: string;
   isEdited: boolean;
+  likesCount: number;
   createdAt: string;
   updatedAt: string;
   author: GuestbookAuthor;
@@ -44,7 +45,12 @@ type View = {
   likesCount: number;
 };
 
-type Like = {
+type LikePost = {
   userId: number;
   slug: string;
+};
+
+type LikeMessage = {
+  userId: number;
+  messageId: number;
 };

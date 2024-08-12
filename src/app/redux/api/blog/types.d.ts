@@ -8,20 +8,20 @@ type GetViewsRequest = void;
 
 type GetViewsResponse = View[];
 
-type AddLikeRequest = {
+type AddPostLikeRequest = {
   slug: string;
 };
 
-type AddLikeResponse = Like;
+type AddPostLikeResponse = LikePost;
 
-type RemoveLikeRequest = {
+type RemovePostLikeRequest = {
   slug: string;
 };
 
-type RemoveLikeResponse = Like;
+type RemovePostLikeResponse = LikePost;
 
-type GetLikeRequest = {
+type GetPostLikesRequest = {
   slug: string;
 };
 
-type GetLikeResponse = Like[];
+type GetPostLikesResponse = LikePost[];

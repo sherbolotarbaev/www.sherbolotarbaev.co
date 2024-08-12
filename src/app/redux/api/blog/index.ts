@@ -18,25 +18,25 @@ const api = index.injectEndpoints({
       providesTags: ['blog'],
     }),
 
-    addLike: build.mutation<AddLikeResponse, AddLikeRequest>({
+    addPostLike: build.mutation<AddPostLikeResponse, AddPostLikeRequest>({
       query: (params) => ({
-        url: `/likes/${params.slug}`,
+        url: `/likes/post/${params.slug}`,
         method: 'POST',
       }),
       invalidatesTags: ['blog'],
     }),
 
-    removeLike: build.mutation<RemoveLikeResponse, RemoveLikeRequest>({
+    removePostLike: build.mutation<RemovePostLikeResponse, RemovePostLikeRequest>({
       query: (params) => ({
-        url: `/likes/${params.slug}`,
+        url: `/likes/post/${params.slug}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['blog'],
     }),
 
-    getLikes: build.query<GetLikeResponse, GetLikeRequest>({
+    getPostLikes: build.query<GetPostLikesResponse, GetPostLikesRequest>({
       query: (params) => ({
-        url: `/likes/${params.slug}`,
+        url: `/likes/post/${params.slug}`,
         method: 'GET',
       }),
       providesTags: ['blog'],
@@ -47,8 +47,8 @@ const api = index.injectEndpoints({
 export const {
   useAddViewQuery,
   useGetViewsQuery,
-  useAddLikeMutation,
-  useRemoveLikeMutation,
-  useGetLikesQuery,
+  useAddPostLikeMutation,
+  useRemovePostLikeMutation,
+  useGetPostLikesQuery,
 } = api;
 export default api;
