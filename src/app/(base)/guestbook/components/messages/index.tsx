@@ -67,7 +67,7 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
           : MIN_LOAD_MESSAGES_COUNT),
     );
     refetch();
-  }, [refetch]);
+  }, [data, refetch]);
 
   const messages = useMemo(() => {
     if (!data || isLoading || isError) return null;
@@ -142,7 +142,7 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
           <div className={clsx('text', styles.text)}>
             <h2 className="title">Are you sure you want to delete this message?</h2>
 
-            <p className="desc">"{selectedMessage.message}"</p>
+            <p className="desc">{selectedMessage.message}</p>
           </div>
 
           <div className={styles.buttons}>
