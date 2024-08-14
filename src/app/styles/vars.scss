@@ -19,7 +19,7 @@
   --bg-blue-active: rgb(53, 118, 222);
 
   --blue-color: rgb(68, 127, 255);
-  --blue-outline-color: rgba(26, 78, 189, 0.571);
+  --blue-outline-color: rgba(26, 78, 189, 0.445);
   --blue-border-color: rgba(68, 127, 255, 0.823);
 
   --bg-red: rgba(255, 111, 111, 0.27);
@@ -71,7 +71,8 @@
   );
 
   --min-width: 21.875rem;
-  --max-width: 34.375rem;
+  // --max-width: 34.375rem;
+  --max-width: 38.375rem;
 
   --duration: 0.25s;
 }

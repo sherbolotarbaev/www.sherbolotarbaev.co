@@ -17,7 +17,8 @@ import Button from 'components/button';
 import Popup from 'components/popup';
 import Image from 'next/image';
 
-import { BiChevronDown, BiLike } from 'react-icons/bi';
+import { BiChevronDown } from 'react-icons/bi';
+import { FaRegHeart } from 'react-icons/fa6';
 import { MdDeleteOutline, MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
@@ -39,20 +40,21 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
     take,
   });
   const [deleteMessage, { isLoading: isDeleting }] = useDeleteGuestbookMessageMutation();
-  const [addLike] = useAddMessageLikeMutation();
-  const [removeLike] = useRemoveMessageLikeMutation();
+  const [addLike, { isLoading: isLiking }] = useAddMessageLikeMutation();
+  const [removeLike, { isLoading: isLikeRemoving }] = useRemoveMessageLikeMutation();
 
   const [messageLikes, setMessageLikes] = useState<
     Map<number, { count: number; liked: boolean }>
   >(new Map());
 
-  const handleSelectMessage = useCallback((message: SelectedMessage | null) => {
+  const handleSelectMessage = (message: SelectedMessage | null) => {
+    setIsModalOpen(true);
     setSelectedMessage(message);
-  }, []);
+  };
 
-  const handleOpenModal = useCallback(() => {
-    setIsModalOpen((prev) => !prev);
-  }, []);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleDeleteMessage = useCallback(
     (id: number) => {
@@ -73,12 +75,18 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
 
   const handleLike = useCallback(
     async (id: number, currentLikes: number, isLiked: boolean) => {
+      if (!me) return;
+
       setMessageLikes((prev) =>
         new Map(prev).set(id, {
           count: isLiked ? currentLikes - 1 : currentLikes + 1,
           liked: !isLiked,
         }),
       );
+
+      if (isLiking || isLikeRemoving) {
+        return;
+      }
 
       try {
         if (isLiked) {
@@ -96,7 +104,7 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
         console.error('Failed to update like:', error);
       }
     },
-    [addLike, removeLike],
+    [me, addLike, isLiking, removeLike, isLikeRemoving],
   );
 
   const handleLoadMore = useCallback(() => {
@@ -117,57 +125,59 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
         const localLikes = messageLikes.get(id) || { count: likesCount, liked: hasLiked };
 
         return (
-          <div key={id} className={styles.message}>
-            {author.photo && (
-              <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
-                <Image
-                  className="logo"
-                  width={30}
-                  height={30}
-                  src={author.photo}
-                  alt={author.name || 'User'}
-                  loading="lazy"
-                />
+          <div className={styles.message_wrapper}>
+            <div key={id} className={styles.message}>
+              {author.photo && (
+                <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
+                  <Image
+                    className="logo"
+                    width={30}
+                    height={30}
+                    src={author.photo}
+                    alt={author.name || 'User'}
+                    loading="lazy"
+                  />
+                </div>
+              )}
+
+              <div className={styles.info}>
+                <div className={styles.name}>
+                  {author.name}
+
+                  {author.isVerified && (
+                    <MdVerified color="var(--color-code-markup-heading)" />
+                  )}
+
+                  <span className={styles.created_at}>{formatDate(createdAt)}</span>
+                </div>
+
+                {message}
               </div>
-            )}
 
-            <div className={styles.info}>
-              <div className={styles.name}>
-                {author.name}
-
-                {author.isVerified && (
-                  <MdVerified color="var(--color-code-markup-heading)" />
-                )}
-
-                <span className={styles.created_at}>{formatDate(createdAt)}</span>
+              <div className={styles.metadata}>
+                <span
+                  className={clsx(
+                    styles.likes,
+                    localLikes.liked && styles.liked,
+                    !me && styles.disabled,
+                  )}
+                  onClick={() => handleLike(id, localLikes.count, localLikes.liked)}
+                >
+                  <FaRegHeart size={15} /> {localLikes.count}
+                </span>
               </div>
-
-              {message}
             </div>
 
-            <div className={styles.metadata}>
+            {me && me.email === author.email && (
               <span
-                className={styles.likes}
+                className={styles.del}
                 onClick={() => {
-                  if (!me) return;
-                  handleLike(id, localLikes.count, localLikes.liked);
+                  handleSelectMessage({ id, message, author, createdAt });
                 }}
               >
-                <BiLike /> {localLikes.count}
+                <MdDeleteOutline size={18} />
               </span>
-
-              {me && me.email === author.email && (
-                <span
-                  className={styles.del}
-                  onClick={() => {
-                    setIsModalOpen(true);
-                    handleSelectMessage({ id, message, author, createdAt });
-                  }}
-                >
-                  <MdDeleteOutline />
-                </span>
-              )}
-            </div>
+            )}
           </div>
         );
       }),
@@ -195,7 +205,7 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
       </div>
 
       {selectedMessage && (
-        <Popup className={styles.modal} close={handleOpenModal} isOpen={isModalOpen}>
+        <Popup className={styles.modal} close={handleCloseModal} isOpen={isModalOpen}>
           <div className={clsx('text', styles.text)}>
             <h2 className="title">Are you sure you want to delete this message?</h2>
 
@@ -213,7 +223,7 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
 
             <Button
               onClick={() => {
-                handleOpenModal();
+                handleCloseModal();
                 handleSelectMessage(null);
               }}
               theme="red"
@@ -236,14 +246,16 @@ const LoadingMessages: React.FC<LoadingMessagesProps> = ({ count = 1 }) => {
   return (
     <div className={styles.load}>
       {React.Children.toArray(
-        Array.from({ length: count }).map((_, index) => (
-          <div key={index} className={styles.message}>
-            <div className={styles.logo_wrapper}></div>
+        Array.from({ length: count }).map((_) => (
+          <div className={styles.message_wrapper}>
+            <div className={styles.message}>
+              <div className={styles.logo_wrapper}></div>
 
-            <div className={styles.info}>
-              <span className={styles.name}></span>
+              <div className={styles.info}>
+                <span className={styles.name}></span>
 
-              <span className={styles.text}></span>
+                <span className={styles.text}></span>
+              </div>
             </div>
           </div>
         )),
