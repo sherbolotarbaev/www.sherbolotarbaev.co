@@ -22,10 +22,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { MdDeleteOutline, MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
-type SelectedMessage = Omit<
-  GuestbookMessage,
-  'updatedAt' | 'isEdited' | 'likesCount' | 'hasLiked'
->;
+type SelectedMessage = Omit<GuestbookMessage, 'likesCount' | 'hasLiked'>;
 
 interface MessagesProps {
   me?: User | undefined;
@@ -121,66 +118,91 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
   const messages = useMemo(() => {
     if (!data || isLoading || isError) return null;
     return React.Children.toArray(
-      data.items.map(({ id, message, createdAt, author, likesCount, hasLiked }) => {
-        const localLikes = messageLikes.get(id) || { count: likesCount, liked: hasLiked };
+      data.items.map(
+        ({
+          id,
+          message,
+          createdAt,
+          updatedAt,
+          isEdited,
+          author,
+          likesCount,
+          hasLiked,
+        }) => {
+          const localLikes = messageLikes.get(id) || {
+            count: likesCount,
+            liked: hasLiked,
+          };
 
-        return (
-          <div className={styles.message_wrapper}>
-            <div key={id} className={styles.message}>
-              {author.photo && (
-                <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
-                  <Image
-                    className="logo"
-                    width={30}
-                    height={30}
-                    src={author.photo}
-                    alt={author.name || 'User'}
-                    loading="lazy"
-                  />
+          return (
+            <div key={id} className={styles.message_wrapper}>
+              <div className={styles.message}>
+                {author.photo && (
+                  <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
+                    <Image
+                      className="logo"
+                      width={30}
+                      height={30}
+                      src={author.photo}
+                      alt={author.name || 'User'}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                <div className={styles.info}>
+                  <div className={styles.name}>
+                    {author.name}
+
+                    {author.isVerified && (
+                      <MdVerified color="var(--color-code-markup-heading)" />
+                    )}
+
+                    <span className={styles.created_at}>
+                      {!isEdited ? formatDate(createdAt) : formatDate(updatedAt)}
+                    </span>
+
+                    {isEdited && <span className={styles.edited}>(edited)</span>}
+                  </div>
+
+                  {message}
                 </div>
-              )}
 
-              <div className={styles.info}>
-                <div className={styles.name}>
-                  {author.name}
-
-                  {author.isVerified && (
-                    <MdVerified color="var(--color-code-markup-heading)" />
-                  )}
-
-                  <span className={styles.created_at}>{formatDate(createdAt)}</span>
+                <div className={styles.metadata}>
+                  <span
+                    className={clsx(
+                      styles.likes,
+                      localLikes.liked && styles.liked,
+                      !me && styles.disabled,
+                    )}
+                    onClick={() => handleLike(id, localLikes.count, localLikes.liked)}
+                  >
+                    <FaRegHeart size={15} /> {localLikes.count}
+                  </span>
                 </div>
-
-                {message}
               </div>
 
-              <div className={styles.metadata}>
+              {me && me.email === author.email && (
                 <span
-                  className={clsx(
-                    styles.likes,
-                    localLikes.liked && styles.liked,
-                    !me && styles.disabled,
-                  )}
-                  onClick={() => handleLike(id, localLikes.count, localLikes.liked)}
+                  className={styles.del}
+                  onClick={() => {
+                    handleSelectMessage({
+                      id,
+                      message,
+                      author,
+                      createdAt,
+                      updatedAt,
+                      isEdited,
+                    });
+                  }}
                 >
-                  <FaRegHeart size={15} /> {localLikes.count}
+                  <MdDeleteOutline size={18} />
                 </span>
-              </div>
+              )}
             </div>
-
-            {me && me.email === author.email && (
-              <span
-                className={styles.del}
-                onClick={() => {
-                  handleSelectMessage({ id, message, author, createdAt });
-                }}
-              >
-                <MdDeleteOutline size={18} />
-              </span>
-            )}
-          </div>
-        );
-      }),
+          );
+        },
+      ),
     );
   }, [me, data, isLoading, isError, handleLike, messageLikes]);
 
