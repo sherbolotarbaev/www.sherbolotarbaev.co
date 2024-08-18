@@ -22,7 +22,10 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { MdDeleteOutline, MdVerified } from 'react-icons/md';
 import styles from './styles.module.scss';
 
-type SelectedMessage = Omit<GuestbookMessage, 'likesCount' | 'hasLiked'>;
+type SelectedMessage = Omit<
+  GuestbookMessage,
+  'createdAt' | 'updatedAt' | 'isEdited' | 'author' | 'likesCount' | 'hasLiked'
+>;
 
 interface MessagesProps {
   me?: User | undefined;
@@ -37,12 +40,6 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
     take,
   });
   const [deleteMessage, { isLoading: isDeleting }] = useDeleteGuestbookMessageMutation();
-  const [addLike, { isLoading: isLiking }] = useAddMessageLikeMutation();
-  const [removeLike, { isLoading: isLikeRemoving }] = useRemoveMessageLikeMutation();
-
-  const [messageLikes, setMessageLikes] = useState<
-    Map<number, { count: number; liked: boolean }>
-  >(new Map());
 
   const handleSelectMessage = (message: SelectedMessage | null) => {
     setIsModalOpen(true);
@@ -70,40 +67,6 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
     [deleteMessage],
   );
 
-  const handleLike = useCallback(
-    async (id: number, currentLikes: number, isLiked: boolean) => {
-      if (!me) return;
-
-      setMessageLikes((prev) =>
-        new Map(prev).set(id, {
-          count: isLiked ? currentLikes - 1 : currentLikes + 1,
-          liked: !isLiked,
-        }),
-      );
-
-      if (isLiking || isLikeRemoving) {
-        return;
-      }
-
-      try {
-        if (isLiked) {
-          await removeLike({ id }).unwrap();
-        } else {
-          await addLike({ id }).unwrap();
-        }
-      } catch (error) {
-        setMessageLikes((prev) =>
-          new Map(prev).set(id, {
-            count: isLiked ? currentLikes : currentLikes > 0 ? currentLikes - 1 : 0,
-            liked: isLiked,
-          }),
-        );
-        console.error('Failed to update like:', error);
-      }
-    },
-    [me, addLike, isLiking, removeLike, isLikeRemoving],
-  );
-
   const handleLoadMore = useCallback(() => {
     setTake(
       (prevTake) =>
@@ -129,11 +92,6 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
           likesCount,
           hasLiked,
         }) => {
-          const localLikes = messageLikes.get(id) || {
-            count: likesCount,
-            liked: hasLiked,
-          };
-
           return (
             <Message
               me={me}
@@ -143,15 +101,15 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
               isEdited={isEdited}
               createdAt={createdAt}
               updatedAt={updatedAt}
-              localLikes={localLikes}
-              handleLike={handleLike}
+              likesCount={likesCount}
+              hasLiked={hasLiked}
               handleSelectMessage={handleSelectMessage}
             />
           );
         },
       ),
     );
-  }, [me, data, isLoading, isError, handleLike, messageLikes]);
+  }, [me, data, isLoading, isError]);
 
   return (
     <>
@@ -242,13 +200,8 @@ const LoadingMessages: React.FC<LoadingMessagesProps> = ({ count = 1 }) => {
   );
 };
 
-interface MessageProps extends SelectedMessage {
+interface MessageProps extends GuestbookMessage {
   me: User | undefined;
-  localLikes: {
-    count: number;
-    liked: boolean;
-  };
-  handleLike: (id: number, currentLikes: number, liked: boolean) => void;
   handleSelectMessage: (message: SelectedMessage) => void;
 }
 
@@ -259,11 +212,59 @@ const Message: React.FC<MessageProps> = ({
   isEdited,
   createdAt,
   updatedAt,
-  localLikes,
+  likesCount,
+  hasLiked,
   me,
-  handleLike,
   handleSelectMessage,
 }) => {
+  const [addLike, { isLoading: isLiking }] = useAddMessageLikeMutation();
+  const [removeLike, { isLoading: isLikeRemoving }] = useRemoveMessageLikeMutation();
+
+  const [messageLikes, setMessageLikes] = useState<
+    Map<number, { count: number; liked: boolean }>
+  >(new Map());
+
+  const localLikes = messageLikes.get(id) || {
+    count: likesCount,
+    liked: hasLiked,
+  };
+
+  const handleLike = useCallback(
+    async (id: number, currentLikes: number, isLiked: boolean) => {
+      if (!me) return;
+
+      setMessageLikes((prev) =>
+        new Map(prev).set(id, {
+          count: isLiked ? currentLikes - 1 : currentLikes + 1,
+          liked: !isLiked,
+        }),
+      );
+
+      if (isLiking || isLikeRemoving) {
+        return;
+      }
+
+      try {
+        if (isLiked) {
+          await removeLike({ id }).unwrap();
+        } else {
+          await addLike({ id }).unwrap();
+        }
+      } catch (error: any) {
+        if (error.data.status == !409) {
+          setMessageLikes((prev) =>
+            new Map(prev).set(id, {
+              count: isLiked ? currentLikes : currentLikes > 0 ? currentLikes - 1 : 0,
+              liked: isLiked,
+            }),
+          );
+        }
+        console.error('Failed to update like:', error);
+      }
+    },
+    [me, addLike, isLiking, removeLike, isLikeRemoving],
+  );
+
   return (
     <div key={id} className={styles.message_wrapper}>
       <div className={styles.message}>
@@ -310,14 +311,7 @@ const Message: React.FC<MessageProps> = ({
           <span
             className={styles.del}
             onClick={() => {
-              handleSelectMessage({
-                id,
-                message,
-                author,
-                createdAt,
-                updatedAt,
-                isEdited,
-              });
+              handleSelectMessage({ id, message });
             }}
           >
             <MdDeleteOutline size={18} />
