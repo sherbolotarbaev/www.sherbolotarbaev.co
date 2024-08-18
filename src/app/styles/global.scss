@@ -58,13 +58,32 @@ body {
     padding: 0 1.25rem;
   }
 
+  .loader {
+    background: var(--gradient-loader);
+    background-size: 500% 500%;
+
+    animation: loadingAnimation 2s linear infinite;
+
+    @keyframes loadingAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  }
+
   .title,
   .subtitle {
     display: flex;
     align-items: center;
     gap: 0.35rem;
 
-    font-size: 0.9375rem;
+    font-size: 0.9895rem;
     font-weight: 500;
     color: var(--color-800);
 
@@ -78,9 +97,9 @@ body {
   }
 
   .title {
-    line-height: 2rem;
+    line-height: 1.75rem;
 
-    font-size: 1.075rem;
+    font-size: 1.15rem;
 
     &.highlight {
       padding-bottom: 0.55rem;
@@ -96,7 +115,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
 
-    font-size: 0.875rem;
+    font-size: 0.925rem;
     color: var(--color-800);
   }
 
@@ -115,7 +134,7 @@ body {
   .link {
     line-height: 1.2rem;
 
-    font-size: 0.875rem;
+    font-size: 0.925rem;
     color: var(--color-600);
 
     transition: var(--duration);
@@ -137,24 +156,24 @@ body {
       cursor: default;
     }
 
-    background: var(--bg-main);
+    background: var(--bg-400);
     border: 1.2px solid var(--color-300);
     border-radius: var(--border-radius-300);
 
-    font-size: 0.785rem;
+    font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-800);
 
     transition: var(--duration);
 
     &:hover {
-      background: var(--bg-main-hover);
+      background: var(--bg-400-hover);
 
       color: var(--color-600);
     }
 
     &:active {
-      background: var(--bg-main-active);
+      background: var(--bg-400-active);
     }
   }
 
@@ -164,16 +183,16 @@ body {
 
   .input-reset {
     width: 100%;
-    height: 2.55rem;
+    height: 2.85rem;
 
     padding: 0.575rem 0.75rem;
 
     -webkit-appearance: none;
     appearance: none;
 
-    background: var(--bg-main);
-    border: 1.2px solid var(--color-300);
-    border-radius: var(--border-radius-300);
+    background: var(--bg-500);
+    border: 1.2px solid var(--color-200);
+    border-radius: var(--border-radius-400);
     outline: 3px solid transparent;
 
     &::-webkit-search-decoration,
@@ -196,16 +215,21 @@ body {
 
     line-height: 1.38462rem;
 
-    font-size: 0.875rem;
+    font-size: 0.925rem;
     color: var(--color-800);
 
     &::placeholder {
       color: var(--color-400);
     }
 
+    &:hover,
     &:focus {
-      border-color: var(--blue-border-color);
-      outline-color: var(--blue-outline-color);
+      background: var(--bg-500-hover);
+    }
+
+    &:focus {
+      border-color: var(--white-border-color);
+      outline-color: var(--white-outline-color);
     }
   }
 

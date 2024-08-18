@@ -1,12 +1,12 @@
 'use client';
 
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import Button from 'components/button'
-import Form from './components/form'
-import Messages from './components/messages'
+import Button from 'components/button';
+import Form from './components/form';
+import Messages from './components/messages';
 
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
 interface GuestbookClientProps {
   me?: User | undefined;
@@ -17,7 +17,7 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
     <>
       <div className={clsx('wrapper', styles.wrapper)}>
         <div className={clsx('container', styles.container)}>
-          <h2 className="title">sign my guestbook</h2>
+          <h2 className="title">Sign my guestbook</h2>
 
           {me ? (
             <Form />

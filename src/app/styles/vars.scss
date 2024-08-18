@@ -1,25 +1,32 @@
 :root {
-  --bg-main: hsl(240, 10%, 6%);
-  --bg-main-hover: hsl(240, 10%, 8%);
-  --bg-main-active: hsl(240, 10%, 10%);
+  --bg-main: #000;
+  --bg-main-hover: #101010;
+  --bg-main-hover: #111111;
 
-  --bg-300: hsla(240, 10%, 6%, 0.97);
-  --bg-400: hsla(240, 10%, 6%, 0.765);
+  --bg-300: rgba(0, 0, 0, 0.336);
 
-  --bg-500: hsl(240, 9.47%, 10.39%);
-  --bg-500-hover: hsl(240, 9.47%, 14%);
-  --bg-500-active: hsl(240, 9.47%, 16%);
+  --bg-400: #262626;
+  --bg-400-hover: #353535;
+  --bg-400-active: #454545;
+
+  --bg-500: #0f0f0f;
+  --bg-500-hover: #1a1a1a;
+  --bg-500-active: #1f1f1f;
 
   --bg-white: #fff;
   --bg-white-hover: #f2f2f2;
   --bg-white-active: #ededed;
+
+  --white-color: hsl(0 0% 94.12% / 1);
+  --white-outline-color: hsla(0, 0%, 94%, 0.291);
+  --white-border-color: hsl(0 0% 94.12% / 1);
 
   --bg-blue: rgb(52, 116, 255);
   --bg-blue-hover: rgb(59 130 246 / 1);
   --bg-blue-active: rgb(53, 118, 222);
 
   --blue-color: rgb(68, 127, 255);
-  --blue-outline-color: rgba(26, 78, 189, 0.445);
+  --blue-outline-color: rgba(26, 78, 189, 0.345);
   --blue-border-color: rgba(68, 127, 255, 0.823);
 
   --bg-red: rgba(255, 111, 111, 0.27);
@@ -31,12 +38,12 @@
   --red-border-color: hsl(0 90.6% 70.8% / 1);
 
   --bg-code: var(--bg-500);
-  --bg-code-300: var(--bg-300);
+  --bg-code-300: #151515;
   --bg-code-hover: var(--color-300);
   --bg-code--markup-inserted: #033a16;
   --bg-code--markup-deleted: #67060c;
 
-  --color-code-main: var(--color-800);
+  --color-code-main: #e5e5e5;
   --color-code-keyword: #ff7b72;
   --color-code-entity: #d2a8ff;
   --color-code-constant: #79c0ff;
@@ -54,14 +61,20 @@
 
   --border-radius-700: 1rem;
   --border-radius-500: 0.75rem;
-  --border-radius-400: 0.575rem;
+  // --border-radius-400: 0.575rem;
+  --border-radius-400: 0.5rem;
   --border-radius-300: 0.3125rem;
   --border-radius-200: 0.25rem;
 
-  --color-800: rgb(255 255 255 / 1);
-  --color-600: rgba(235, 235, 245, 0.6);
-  --color-400: rgba(235, 235, 245, 0.375);
-  --color-300: hsl(240, 7%, 19%);
+  // --color-800: rgb(255 255 255 / 1);
+  --color-800: #fff;
+  // --color-600: rgba(235, 235, 245, 0.6);
+  --color-600: #d4d4d4;
+  // --color-400: rgba(235, 235, 245, 0.375);
+  --color-400: #a3a3a3;
+  // --color-300: hsl(240, 7%, 19%);
+  --color-300: #404040;
+  --color-200: rgb(255 255 255 / 10%);
 
   --gradient-loader: linear-gradient(
     90deg,

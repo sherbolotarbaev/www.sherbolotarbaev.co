@@ -135,71 +135,18 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
           };
 
           return (
-            <div key={id} className={styles.message_wrapper}>
-              <div className={styles.message}>
-                {author.photo && (
-                  <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
-                    <Image
-                      className="logo"
-                      width={30}
-                      height={30}
-                      src={author.photo}
-                      alt={author.name || 'User'}
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-
-                <div className={styles.info}>
-                  <div className={styles.name}>
-                    {author.name}
-
-                    {author.isVerified && (
-                      <MdVerified color="var(--color-code-markup-heading)" />
-                    )}
-
-                    <span className={styles.created_at}>
-                      {!isEdited ? formatDate(createdAt) : formatDate(updatedAt)}
-                    </span>
-
-                    {isEdited && <span className={styles.edited}>(edited)</span>}
-                  </div>
-
-                  {message}
-                </div>
-
-                <div className={styles.metadata}>
-                  <span
-                    className={clsx(
-                      styles.likes,
-                      localLikes.liked && styles.liked,
-                      !me && styles.disabled,
-                    )}
-                    onClick={() => handleLike(id, localLikes.count, localLikes.liked)}
-                  >
-                    <FaRegHeart size={15} /> {localLikes.count}
-                  </span>
-                </div>
-              </div>
-
-              {me && me.email === author.email && (
-                <span
-                  className={styles.del}
-                  onClick={() => {
-                    handleSelectMessage({
-                      id,
-                      message,
-                      author,
-                      createdAt,
-                      updatedAt,
-                      isEdited,
-                    });
-                  }}
-                >
-                  <MdDeleteOutline size={18} />
-                </span>
-              )}
-            </div>
+            <Message
+              me={me}
+              id={id}
+              message={message}
+              author={author}
+              isEdited={isEdited}
+              createdAt={createdAt}
+              updatedAt={updatedAt}
+              localLikes={localLikes}
+              handleLike={handleLike}
+              handleSelectMessage={handleSelectMessage}
+            />
           );
         },
       ),
@@ -226,31 +173,32 @@ const Messages: React.FC<MessagesProps> = ({ me }) => {
         )}
       </div>
 
-      {selectedMessage && (
+      {selectedMessage && !isDeleting && (
         <Popup className={styles.modal} close={handleCloseModal} isOpen={isModalOpen}>
           <div className={clsx('text', styles.text)}>
-            <h2 className="title">Are you sure you want to delete this message?</h2>
+            <h2 className="title">Delete message?</h2>
 
-            <p className="desc">{selectedMessage.message}</p>
+            <p className="desc">
+              Are you sure you want to delete your message? This action cannot be undone.
+            </p>
           </div>
 
           <div className={styles.buttons}>
-            <Button
-              theme="blue"
-              onClick={() => handleDeleteMessage(selectedMessage.id)}
-              load={isDeleting}
-            >
-              Yes
-            </Button>
-
             <Button
               onClick={() => {
                 handleCloseModal();
                 handleSelectMessage(null);
               }}
-              theme="red"
             >
               Cancel
+            </Button>
+
+            <Button
+              theme="blue"
+              onClick={() => handleDeleteMessage(selectedMessage.id)}
+              load={isDeleting}
+            >
+              Delete
             </Button>
           </div>
         </Popup>
@@ -271,17 +219,111 @@ const LoadingMessages: React.FC<LoadingMessagesProps> = ({ count = 1 }) => {
         Array.from({ length: count }).map((_) => (
           <div className={styles.message_wrapper}>
             <div className={styles.message}>
-              <div className={styles.logo_wrapper}></div>
-
               <div className={styles.info}>
-                <span className={styles.name}></span>
+                <div className={clsx('loader', styles.logo_wrapper)}></div>
 
-                <span className={styles.text}></span>
+                <div className={styles.user}>
+                  <span className={clsx('loader', styles.name)}></span>
+
+                  <p className={clsx('loader', styles.created_at)}></p>
+                </div>
               </div>
+
+              <span className={clsx('loader', styles.text)}></span>
+            </div>
+
+            <div className={styles.metadata}>
+              <span className={clsx('loader', styles.likes)}></span>
             </div>
           </div>
         )),
       )}
+    </div>
+  );
+};
+
+interface MessageProps extends SelectedMessage {
+  me: User | undefined;
+  localLikes: {
+    count: number;
+    liked: boolean;
+  };
+  handleLike: (id: number, currentLikes: number, liked: boolean) => void;
+  handleSelectMessage: (message: SelectedMessage) => void;
+}
+
+const Message: React.FC<MessageProps> = ({
+  id,
+  author,
+  message,
+  isEdited,
+  createdAt,
+  updatedAt,
+  localLikes,
+  me,
+  handleLike,
+  handleSelectMessage,
+}) => {
+  return (
+    <div key={id} className={styles.message_wrapper}>
+      <div className={styles.message}>
+        <div className={styles.info}>
+          {author.photo && (
+            <div className={clsx('logo_wrapper', styles.logo_wrapper)}>
+              <Image fill src={author.photo} alt={author.name || 'User'} loading="lazy" />
+            </div>
+          )}
+
+          <div className={styles.user}>
+            <div className={styles.name}>
+              {author.name}
+
+              {author.isVerified && (
+                <MdVerified color="var(--color-code-markup-heading)" />
+              )}
+            </div>
+
+            <p className={styles.created_at}>
+              {!isEdited ? formatDate(createdAt) : formatDate(updatedAt)}
+
+              {isEdited && <span className={styles.edited}>(edited)</span>}
+            </p>
+          </div>
+        </div>
+
+        {message}
+      </div>
+
+      <div className={styles.metadata}>
+        <span
+          className={clsx(
+            styles.likes,
+            localLikes.liked && styles.liked,
+            !me && styles.disabled,
+          )}
+          onClick={() => handleLike(id, localLikes.count, localLikes.liked)}
+        >
+          <FaRegHeart size={15} /> {localLikes.count}
+        </span>
+
+        {me && me.email === author.email && (
+          <span
+            className={styles.del}
+            onClick={() => {
+              handleSelectMessage({
+                id,
+                message,
+                author,
+                createdAt,
+                updatedAt,
+                isEdited,
+              });
+            }}
+          >
+            <MdDeleteOutline size={18} />
+          </span>
+        )}
+      </div>
     </div>
   );
 };

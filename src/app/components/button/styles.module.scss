@@ -22,17 +22,19 @@
 
   &.disabled,
   &.load {
-    background: var(--bg-main-hover);
+    background: var(--bg-500-hover);
+    border-color: var(--color-200);
 
     cursor: not-allowed;
 
-    color: var(--color-600);
+    color: var(--color-400);
 
     &:hover,
     &:active {
-      background: var(--bg-main-hover);
+      background: var(--bg-500-hover);
+      border-color: var(--color-200);
 
-      color: var(--color-600);
+      color: var(--color-400);
     }
   }
 
@@ -90,13 +92,13 @@
 
       cursor: not-allowed;
 
-      color: var(--color-600);
+      color: var(--color-400);
 
       &:hover,
       &:active {
         background: var(--bg-blue-hover);
 
-        color: var(--color-600);
+        color: var(--color-400);
       }
     }
   }
@@ -119,13 +121,13 @@
 
       cursor: not-allowed;
 
-      color: var(--color-600);
+      color: var(--color-400);
 
       &:hover,
       &:active {
         background: var(--bg-red-hover);
 
-        color: var(--color-600);
+        color: var(--color-400);
       }
     }
   }

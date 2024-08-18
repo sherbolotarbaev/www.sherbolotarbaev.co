@@ -33,32 +33,36 @@
       }
     }
 
-    .role {
-      font-weight: 400;
-      color: var(--color-400);
-    }
+    .text {
+      gap: 1.25rem;
 
-    .desc {
-      line-height: 1.35rem;
-
-      font-size: 0.875rem;
-      color: var(--color-600);
-
-      span {
-        font-weight: 500;
-        color: var(--color-800);
+      .role {
+        font-weight: 400;
+        color: var(--color-400);
       }
-    }
 
-    .link {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
+      .desc {
+        line-height: 1.35rem;
 
-      color: var(--blue-color);
+        font-size: 0.925rem;
+        color: var(--color-600);
 
-      &:hover {
-        text-decoration: underline;
+        span {
+          font-weight: 500;
+          color: var(--color-800);
+        }
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        color: var(--blue-color);
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

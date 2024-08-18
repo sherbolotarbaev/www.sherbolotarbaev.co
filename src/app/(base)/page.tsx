@@ -1,23 +1,20 @@
 import clsx from 'clsx';
-import dynamic from 'next/dynamic';
 import { siteConfig } from '~/config/site';
 
 import Badge from 'components/badge';
-import { GridLoad } from 'components/grid';
 import Image from 'next/image';
 import Link from 'next/link';
 import Experience from './components/experience';
 import Skills from './components/skills';
 
 import sherbolot from 'public/images/sherbolot.webp';
-import { BiLogoGithub, BiLogoLinkedin } from 'react-icons/bi';
-import { images } from '~/content/home';
+import { BiEnvelope, BiLogoGithub, BiLogoLinkedin } from 'react-icons/bi';
 import styles from './styles.module.scss';
 
-const Grid = dynamic(() => import('components/grid'), {
-  ssr: false,
-  loading: () => <GridLoad images={images} />,
-});
+// const Grid = dynamic(() => import('components/grid'), {
+//   ssr: false,
+//   loading: () => <GridLoad images={images} />,
+// });
 
 export default function Home() {
   return (
@@ -51,6 +48,10 @@ export default function Home() {
               <Badge href="https://www.linkedin.com/in/sherbolotarbaev">
                 <BiLogoLinkedin size={15} /> LinkedIn
               </Badge>
+
+              <Badge href="mailto:arbaevsherbolot@gmail.com">
+                <BiEnvelope size={15} /> Email
+              </Badge>
             </p>
           </div>
 
@@ -61,19 +62,19 @@ export default function Home() {
         </div>
 
         <div className={clsx('container', styles.container)}>
-          <h2 className="title highlight">tech stack 🦾</h2>
+          <h2 className="title highlight">Tech stack 🦾</h2>
 
           <Skills />
         </div>
 
         <div className={clsx('container', styles.container)}>
-          <h2 className="title highlight">my experience 🧠</h2>
+          <h2 className="title highlight">My experience 🧠</h2>
 
           <Experience />
         </div>
 
         <div className={clsx('container', styles.container)}>
-          <h2 className="title highlight">currently cooking 👨‍🍳</h2>
+          <h2 className="title highlight">Currently cooking 👨‍🍳</h2>
 
           <div className="text">
             <Link
@@ -102,7 +103,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={clsx('container', styles.container)}>
+        {/* <div className={clsx('container', styles.container)}>
           <h2 className="title highlight">gallery 🏞️</h2>
 
           <div className="text">
@@ -114,7 +115,7 @@ export default function Home() {
           </div>
 
           <Grid images={images} />
-        </div>
+        </div> */}
       </div>
     </>
   );

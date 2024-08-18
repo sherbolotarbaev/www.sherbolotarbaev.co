@@ -27,15 +27,19 @@
     }
 
     .text {
+      gap: 0.55rem;
+
       .title {
         font-size: 1.375rem;
       }
 
       .desc {
+        padding-top: 1rem;
+
         line-height: 1.65rem;
 
         font-size: 0.925rem;
-        color: var(--color-800);
+        color: var(--color-600);
       }
 
       .date {

@@ -6,9 +6,6 @@ interface BaseLayoutProps {
 }
 
 export default async function BaseLayout({ children }: Readonly<BaseLayoutProps>) {
-  // const mePromise = getMe();
-  // console.log(await mePromise);
-
   return (
     <>
       <Header />

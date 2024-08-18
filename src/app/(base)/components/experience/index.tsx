@@ -21,16 +21,18 @@ const Experience = () => {
               <h3 className={clsx('subtitle', styles.date)}>{date}</h3>
             </div>
 
-            <h3 className={clsx('subtitle', styles.role)}>{role} • Full-time</h3>
+            <div className={clsx('text', styles.text)}>
+              <h3 className={clsx('subtitle', styles.role)}>{role} • Full-time</h3>
 
-            <p
-              className={styles.desc}
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
+              <p
+                className={styles.desc}
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
 
-            <Link className={clsx('link', styles.link)} href={url} target="_blank">
-              <BiLink size={19} /> {url}
-            </Link>
+              <Link className={clsx('link', styles.link)} href={url} target="_blank">
+                <BiLink size={19} /> {url}
+              </Link>
+            </div>
           </div>
         )),
       )}

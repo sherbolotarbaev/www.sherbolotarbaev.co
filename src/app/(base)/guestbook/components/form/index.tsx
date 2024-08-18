@@ -14,12 +14,7 @@ type FormData = {
 };
 
 const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<FormData>({ mode: 'onChange' });
+  const { register, handleSubmit, setValue } = useForm<FormData>({ mode: 'onChange' });
 
   const [newGuestbookMessage, { isLoading }] = useNewGuestbookMessageMutation();
 
@@ -31,6 +26,8 @@ const Form = () => {
   };
 
   const handleSubmitForm: SubmitHandler<FormData> = async ({ message }) => {
+    if (!message.length) return;
+
     try {
       await newGuestbookMessage({ message }).unwrap();
     } catch (error: any) {
@@ -44,13 +41,9 @@ const Form = () => {
     <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
       <div className={styles.container}>
         <Input
-          label="Message"
           placeholder="Your message..."
-          error={errors.message && errors.message.message}
           load={isLoading}
-          register={register('message', {
-            required: 'This field is required',
-          })}
+          register={register('message')}
         />
       </div>
     </form>
