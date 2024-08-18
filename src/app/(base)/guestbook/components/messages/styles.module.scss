@@ -126,12 +126,6 @@
 
         transition: var(--duration);
 
-        &:hover {
-          background: var(--blue-outline-color);
-
-          color: var(--blue-color);
-        }
-
         &.liked {
           color: var(--blue-color);
         }
