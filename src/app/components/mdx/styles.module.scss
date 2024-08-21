@@ -81,7 +81,8 @@
 .h2,
 .h3,
 .h4 {
-  padding-top: 1.25rem;
+  scroll-margin-top: 4rem;
+  padding-top: 1.55rem;
 
   font-size: 1.285rem;
   font-weight: 500;
@@ -89,6 +90,16 @@
 
   .code {
     font-size: 1rem;
+  }
+
+  &:hover {
+    &::before {
+      content: '#';
+
+      padding-right: 0.55rem;
+
+      color: var(--color-400);
+    }
   }
 }
 
