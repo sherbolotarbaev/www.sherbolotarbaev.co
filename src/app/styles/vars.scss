@@ -1,33 +1,31 @@
 :root {
-  --bg-main: #000;
+  // --bg-main: #000;
+  --bg-main: #161616;
   --bg-main-hover: #101010;
   --bg-main-hover: #111111;
 
-  --bg-300: rgba(0, 0, 0, 0.336);
+  --bg-300: #1616166f;
 
-  --bg-400: #262626;
-  --bg-400-hover: #353535;
-  --bg-400-active: #454545;
+  // --bg-500: #0f0f0f;
+  --bg-500: #242424;
+  --bg-500-hover: #303030;
+  --bg-500-active: #4c4c4c;
 
-  --bg-500: #0f0f0f;
-  --bg-500-hover: #1a1a1a;
-  --bg-500-active: #1f1f1f;
-
-  --bg-white: #fff;
-  --bg-white-hover: #f2f2f2;
-  --bg-white-active: #ededed;
+  --bg-white: #fffffffa;
+  --bg-white-hover: #ffffffe6;
+  --bg-white-active: #d8d8d8;
 
   --white-color: hsl(0 0% 94.12% / 1);
   --white-outline-color: hsla(0, 0%, 94%, 0.291);
   --white-border-color: hsl(0 0% 94.12% / 1);
 
-  --bg-blue: rgb(52, 116, 255);
-  --bg-blue-hover: rgb(59 130 246 / 1);
-  --bg-blue-active: rgb(53, 118, 222);
+  --bg-blue: #418af4;
+  --bg-blue-hover: #418af4e6;
+  --bg-blue-active: #418af4e6;
 
-  --blue-color: rgb(68, 127, 255);
+  --blue-color: #418af4;
   --blue-outline-color: rgba(26, 78, 189, 0.345);
-  --blue-border-color: rgba(68, 127, 255, 0.823);
+  --blue-border-color: #418af4;
 
   --bg-red: rgba(255, 111, 111, 0.27);
   --bg-red-hover: rgba(255, 111, 111, 0.403);
@@ -67,9 +65,9 @@
   --border-radius-200: 0.25rem;
 
   // --color-800: rgb(255 255 255 / 1);
-  --color-800: #fff;
+  --color-800: #fffffffa;
   // --color-600: rgba(235, 235, 245, 0.6);
-  --color-600: #d4d4d4;
+  --color-600: #a2a4a7;
   // --color-400: rgba(235, 235, 245, 0.375);
   --color-400: #a3a3a3;
   // --color-300: hsl(240, 7%, 19%);

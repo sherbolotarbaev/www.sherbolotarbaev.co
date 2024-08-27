@@ -27,7 +27,7 @@
   .menu {
     min-width: 220px;
 
-    padding: 0.55rem 0.85rem;
+    padding: 0.75rem 0.85rem;
 
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
     transform-origin: top right;
 
     background: var(--bg-500);
-    border-radius: var(--border-radius-400);
+    border-radius: var(--border-radius-500);
     border: 0.8px solid var(--color-300);
 
     transition: var(--duration);

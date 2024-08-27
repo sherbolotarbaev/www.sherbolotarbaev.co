@@ -26,15 +26,10 @@
     flex-direction: column;
     gap: 0.35rem;
 
-    background: var(--bg-500);
-    border-radius: var(--border-radius-300);
-
     font-size: 0.925rem;
     color: var(--color-600);
 
     &:hover {
-      background: var(--bg-500-hover);
-
       color: var(--color-800);
     }
   }

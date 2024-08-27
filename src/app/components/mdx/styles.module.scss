@@ -63,6 +63,21 @@
   }
 }
 
+.h1,
+.h2,
+.h3,
+.h4 {
+  &:hover {
+    &::before {
+      content: '#';
+
+      padding-right: 0.55rem;
+
+      color: var(--color-400);
+    }
+  }
+}
+
 .h1 {
   padding-top: 1.55rem;
   padding-bottom: 1.25rem;
@@ -90,16 +105,6 @@
 
   .code {
     font-size: 1rem;
-  }
-
-  &:hover {
-    &::before {
-      content: '#';
-
-      padding-right: 0.55rem;
-
-      color: var(--color-400);
-    }
   }
 }
 

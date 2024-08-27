@@ -3,30 +3,29 @@
 import clsx from 'clsx';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
+import { geistSans } from 'shared/lib/fonts';
 import styles from './styles.module.scss';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   load?: boolean;
   error?: string;
   register?: UseFormRegisterReturn<any>;
 }
 
-const Input: React.FC<InputProps> = ({
+const Textarea: React.FC<TextareaProps> = ({
   label,
   name,
   load,
   error,
   register,
   disabled,
-  type,
   ...props
 }) => {
   const className = clsx(
-    'input-reset',
-    styles.input,
+    'textarea-reset',
+    styles.textarea,
     disabled && styles.disabled,
-    type === 'password' && styles.password,
     error && !load && styles.error,
     load && styles.load,
   );
@@ -43,13 +42,14 @@ const Input: React.FC<InputProps> = ({
         )
       )}
 
-      <input
+      <textarea
         className={className}
-        disabled={load || disabled}
+        disabled={load}
+        style={geistSans.style}
         {...(register ? register : { name })}
         {...props}
       />
     </div>
   );
 };
-export default Input;
+export default Textarea;

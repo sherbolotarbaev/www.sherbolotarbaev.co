@@ -21,3 +21,16 @@
     gap: 0.85rem;
   }
 }
+
+.modal {
+  width: 100%;
+  max-width: 26rem;
+
+  padding: 2rem 1rem;
+
+  background: var(--bg-500-hover);
+  border: 1px solid var(--color-300);
+  border-radius: var(--border-radius-500);
+
+  gap: 1rem;
+}
