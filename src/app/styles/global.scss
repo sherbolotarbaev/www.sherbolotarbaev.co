@@ -146,6 +146,12 @@ body {
 
     transition: var(--duration);
 
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      cursor: default;
+    }
+
     &:hover {
       color: var(--color-800);
     }
