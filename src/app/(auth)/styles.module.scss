@@ -1,0 +1,21 @@
+.wrapper {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content_container {
+      width: 100%;
+
+      // max-width: 24rem;
+      max-width: 26rem;
+      min-width: var(--min-width);
+    }
+  }
+}
