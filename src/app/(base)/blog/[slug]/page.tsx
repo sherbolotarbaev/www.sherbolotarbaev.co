@@ -74,9 +74,7 @@ export default async function Post({ params: { slug } }: Readonly<PostProps>) {
     const me = await getMe();
 
     if (!me) {
-      return redirect(
-        `${process.env.NEXT_PUBLIC_AUTH_URL}/sign-in?next=/blog/${post.slug}`,
-      );
+      return redirect(`/sign-in?next=/blog/${post.slug}`);
     }
 
     if (me.email && !me.email.endsWith('@wedevx.co')) {
