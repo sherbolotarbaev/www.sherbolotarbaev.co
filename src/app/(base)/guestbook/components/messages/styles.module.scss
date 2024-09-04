@@ -2,7 +2,7 @@
 .load {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 
   .load_more {
     display: flex;
@@ -22,18 +22,19 @@
   .message_wrapper {
     width: 100%;
 
-    padding: 1rem;
+    padding: 0.85rem;
 
     display: flex;
     justify-content: space-between;
 
     overflow: hidden;
 
-    background: var(--bg-500);
+    background: var(--bg-400);
+    border: 1px solid var(--bg-400);
     border-radius: var(--border-radius-500);
 
     &:hover {
-      background: var(--bg-500-hover);
+      border-color: rgb(255 255 255 / 16%);
     }
 
     .message {
@@ -208,9 +209,11 @@
 
   padding: 2rem 1rem;
 
-  background: var(--bg-500-hover);
+  background: var(--bg-500);
   border: 1px solid var(--color-300);
   border-radius: var(--border-radius-500);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   gap: 1rem;
 

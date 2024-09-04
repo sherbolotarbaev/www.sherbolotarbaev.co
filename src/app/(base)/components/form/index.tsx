@@ -129,7 +129,9 @@ const Form: React.FC<FormProps> = ({ handleCloseModal }) => {
         />
       </div>
 
-      <Button>Submit</Button>
+      <Button theme="white" disabled>
+        Submit
+      </Button>
     </form>
   );
 };

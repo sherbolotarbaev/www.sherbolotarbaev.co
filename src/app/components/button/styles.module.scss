@@ -74,6 +74,39 @@
     }
   }
 
+  &.white {
+    background: var(--bg-white);
+    border-color: transparent;
+
+    color: var(--bg-main);
+
+    &:hover {
+      background: var(--bg-white-hover);
+    }
+
+    &:active {
+      background: var(--bg-white-active);
+    }
+
+    &.disabled,
+    &.load {
+      background: var(--bg-white-hover);
+
+      opacity: 0.8;
+
+      cursor: not-allowed;
+
+      color: var(--color-400);
+
+      &:hover,
+      &:active {
+        background: var(--bg-white-hover);
+
+        color: var(--color-400);
+      }
+    }
+  }
+
   &.blue {
     background: var(--bg-blue);
     border-color: transparent;

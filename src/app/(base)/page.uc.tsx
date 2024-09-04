@@ -88,13 +88,12 @@ export default function HomeClient() {
 
             <SocialMediaIcons />
           </div>
-
           <p className="desc">
             {`I'm a software engineer from Kyrgyzstan 🇰🇬. I'm fascinated by large-scale, high-impact products and contributed to major
             feature launches in industry-leading services.`}
           </p>
 
-          <Button width={120} onClick={() => setIsModalOpen(true)}>
+          <Button theme="white" width={120} onClick={() => setIsModalOpen(true)}>
             Contact
           </Button>
         </div>

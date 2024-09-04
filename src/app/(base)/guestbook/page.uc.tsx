@@ -31,6 +31,7 @@ export default function GuestbookClient({ me }: Readonly<GuestbookClientProps>) 
               </div>
 
               <Button
+                theme="white"
                 redirect={`${process.env.NEXT_PUBLIC_AUTH_URL}/sign-in?next=/guestbook`}
                 width={120}
               >

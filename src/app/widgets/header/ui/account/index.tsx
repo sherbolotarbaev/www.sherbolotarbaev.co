@@ -87,35 +87,37 @@ const Account: React.FC<AccountProps> = ({ close }) => {
         />
       </div>
 
-      <div className={styles.menu}>
-        <div className={styles.info}>
-          <div className="logo_wrapper gradient">
-            <Image
-              className="logo"
-              src={me?.photo || 'https://cdn-icons-png.freepik.com/512/552/552721.png'}
-              alt={`${me.name} ${me.surname}`}
-              loading="lazy"
-              layout="fill"
-            />
+      <div className={styles.menu_wrapper}>
+        <div className={styles.menu}>
+          <div className={styles.info}>
+            <div className="logo_wrapper gradient">
+              <Image
+                className="logo"
+                src={me?.photo || 'https://cdn-icons-png.freepik.com/512/552/552721.png'}
+                alt={`${me.name} ${me.surname}`}
+                loading="lazy"
+                layout="fill"
+              />
+            </div>
+
+            <div className={styles.user}>
+              <span className={styles.name}>
+                {me.name} {me.surname}
+                {me.isVerified && <MdVerified color="var(--color-code-markup-heading)" />}
+              </span>
+
+              <span className={styles.joined}>
+                Joined {formatDate2(me.createdAt.toString())}
+              </span>
+            </div>
+
+            <div className={styles.email}>{me.email}</div>
           </div>
 
-          <div className={styles.user}>
-            <span className={styles.name}>
-              {me.name} {me.surname}
-              {me.isVerified && <MdVerified color="var(--color-code-markup-heading)" />}
-            </span>
-
-            <span className={styles.joined}>
-              Joined {formatDate2(me.createdAt.toString())}
-            </span>
-          </div>
-
-          <div className={styles.email}>{me.email}</div>
+          <Button onClick={handleLogout} load={isLoggingOut} loadText="Logging out...">
+            Log out
+          </Button>
         </div>
-
-        <Button onClick={handleLogout} load={isLoggingOut} loadText="Logging out...">
-          Log out
-        </Button>
       </div>
     </div>
   );

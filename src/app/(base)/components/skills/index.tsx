@@ -13,7 +13,7 @@ const Skills = () => {
       {React.Children.toArray(
         items.map(({ name, href, iconColor, ...props }) => (
           <Link className={styles.skill} href={href} target="_blank">
-            <props.icon color={iconColor} />
+            <props.icon color={iconColor} size={20} />
             {name}
           </Link>
         )),

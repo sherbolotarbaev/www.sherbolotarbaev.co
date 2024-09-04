@@ -1,15 +1,15 @@
 :root {
-  // --bg-main: #000;
-  --bg-main: #161616;
+  --bg-main: rgb(19, 21, 23);
   --bg-main-hover: #101010;
   --bg-main-hover: #111111;
 
-  --bg-300: #1616166f;
+  --bg-300: rgba(19, 21, 23, 0.63);
 
-  // --bg-500: #0f0f0f;
-  --bg-500: #242424;
-  --bg-500-hover: #303030;
-  --bg-500-active: #4c4c4c;
+  --bg-400: rgb(255 255 255 / 4%);
+
+  --bg-500: rgb(255 255 255 / 8%);
+  --bg-500-hover: rgb(255 255 255 / 24%);
+  --bg-500-active: rgb(255 255 255 / 24%);
 
   --bg-white: #fffffffa;
   --bg-white-hover: #ffffffe6;
@@ -17,7 +17,7 @@
 
   --white-color: hsl(0 0% 94.12% / 1);
   --white-outline-color: hsla(0, 0%, 94%, 0.291);
-  --white-border-color: hsl(0 0% 94.12% / 1);
+  --white-border-color: hsla(0, 0%, 94%, 0.652);
 
   --bg-blue: #418af4;
   --bg-blue-hover: #418af4e6;
@@ -35,8 +35,9 @@
   --red-outline-color: hsl(0 84.2% 60.2% / 0.3);
   --red-border-color: hsl(0 90.6% 70.8% / 1);
 
-  --bg-code: var(--bg-500);
-  --bg-code-300: #151515;
+  --bg-code-300: var(--bg-500);
+
+  --bg-code: var(--bg-400);
   --bg-code-hover: var(--color-300);
   --bg-code--markup-inserted: #033a16;
   --bg-code--markup-deleted: #67060c;
@@ -64,15 +65,11 @@
   --border-radius-300: 0.3125rem;
   --border-radius-200: 0.25rem;
 
-  // --color-800: rgb(255 255 255 / 1);
   --color-800: #fffffffa;
-  // --color-600: rgba(235, 235, 245, 0.6);
   --color-600: #a2a4a7;
-  // --color-400: rgba(235, 235, 245, 0.375);
   --color-400: #a3a3a3;
-  // --color-300: hsl(240, 7%, 19%);
-  --color-300: #404040;
-  --color-200: rgb(255 255 255 / 10%);
+  --color-300: rgb(255 255 255 / 12%);
+  --color-200: rgb(255 255 255 / 8%);
 
   --gradient-loader: linear-gradient(
     90deg,
