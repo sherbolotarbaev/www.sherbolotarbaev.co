@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLogInOtpMutation, useSendOtpMutation } from '@/redux/api/auth';
 import { type SubmitHandler, useForm } from 'react-hook-form';
@@ -62,11 +62,6 @@ const LoginForm = () => {
     setValue(name, '');
   };
 
-  const checkIsOtpValid = useCallback(
-    () => otpInput && isOtpSent && otpInput.length === 6 && /^\d+$/.test(otpInput),
-    [otpInput, isOtpSent],
-  );
-
   const handleSendOtp = ({ email }: { email: string }) => {
     toast.promise(sendOtp({ email }).unwrap(), {
       position: 'top-center',
@@ -110,8 +105,16 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (cookieEmail) setValue('email', cookieEmail);
-    if (checkIsOtpValid()) handleLogInOtp({ email: emailInput, otp: otpInput });
-  }, [checkIsOtpValid]);
+    if (
+      otpInput &&
+      isOtpSent &&
+      otpInput.length === 6 &&
+      /^\d+$/.test(otpInput) &&
+      emailInput &&
+      emailInput.length
+    )
+      handleLogInOtp({ email: emailInput, otp: otpInput });
+  }, [otpInput, emailInput, isOtpSent, cookieEmail]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
