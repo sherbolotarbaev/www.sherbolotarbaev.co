@@ -139,7 +139,7 @@ const LoginForm = () => {
 
           <Input
             label="Email"
-            placeholder="Enter your email"
+            placeholder="Enter your email..."
             error={errors.email && errors.email.message}
             load={isOtpSending || isLoading}
             disabled={isOtpSending || isLoading || success}
@@ -158,7 +158,7 @@ const LoginForm = () => {
             <>
               <Input
                 label="6-digit verification code"
-                placeholder="Paste verification code"
+                placeholder="Paste verification code..."
                 error={errors.otp && errors.otp.message}
                 load={isLoading}
                 disabled={isLoading || success}

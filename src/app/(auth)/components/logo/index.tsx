@@ -17,8 +17,8 @@ const Logo = () => {
       className={'logo_wrapper'}
       href={next}
       style={{
-        width: '2.26rem',
-        height: '2.26rem',
+        width: '2.56rem',
+        height: '2.56rem',
       }}
     >
       <Image
