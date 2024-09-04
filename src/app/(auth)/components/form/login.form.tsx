@@ -46,8 +46,8 @@ const LoginForm = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [continueWithEmail, setContinueWithEmail] = useState<boolean>(false);
 
-  const otp = watch('otp');
-  const email = watch('email');
+  const otpInput = watch('otp');
+  const emailInput = watch('email');
 
   const handleContinueWithEmail = async () => {
     setContinueWithEmail(true);
@@ -63,12 +63,12 @@ const LoginForm = () => {
   };
 
   const checkIsOtpValid = useCallback(
-    () => otp && isOtpSent && otp.length === 6 && /^\d+$/.test(otp),
-    [otp, isOtpSent],
+    () => otpInput && isOtpSent && otpInput.length === 6 && /^\d+$/.test(otpInput),
+    [otpInput, isOtpSent],
   );
 
   const handleSendOtp = () => {
-    toast.promise(sendOtp({ email }).unwrap(), {
+    toast.promise(sendOtp({ email: emailInput }).unwrap(), {
       position: 'top-center',
       loading: 'Sending...',
       success: () => {
@@ -83,13 +83,13 @@ const LoginForm = () => {
   };
 
   const handleLogInOtp = () => {
-    toast.promise(logIn({ email, otp, next }).unwrap(), {
+    toast.promise(logIn({ email: emailInput, otp: otpInput, next }).unwrap(), {
       position: 'top-center',
       loading: 'Verifying...',
       success: ({ redirectUrl, email }: LogInOtpResponse) => {
         setSuccess(true);
         setCookie('email', email);
-        router.push(`/?to=${redirectUrl}`);
+        router.push(`/redirect?to=${redirectUrl}`);
         return `Successful sign in as ${email}`;
       },
       error: (error) => {
@@ -111,7 +111,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (cookieEmail) setValue('email', cookieEmail);
     if (checkIsOtpValid()) handleLogInOtp();
-  }, []);
+  }, [checkIsOtpValid]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
