@@ -108,16 +108,9 @@ const LoginForm = () => {
   }, [cookieEmail, setValue]);
 
   useEffect(() => {
-    if (
-      otpInput &&
-      isOtpSent &&
-      otpInput.length === 6 &&
-      /^\d+$/.test(otpInput) &&
-      emailInput &&
-      emailInput.length
-    )
+    if (otpInput && isOtpSent && otpInput.length === 6 && /^\d+$/.test(otpInput))
       handleLogInOtp({ email: emailInput, otp: otpInput });
-  }, [otpInput, emailInput, isOtpSent, handleLogInOtp]);
+  }, [otpInput, isOtpSent, handleLogInOtp]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
