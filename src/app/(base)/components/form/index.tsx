@@ -129,7 +129,7 @@ const Form: React.FC<FormProps> = ({ handleCloseModal }) => {
         />
       </div>
 
-      <Button theme="white" disabled>
+      <Button theme="white" load={isLoading}>
         Submit
       </Button>
     </form>
