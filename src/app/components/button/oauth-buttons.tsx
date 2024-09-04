@@ -73,7 +73,7 @@ const OAuthButtons = () => {
         };
       }
     }
-  }, [error]);
+  }, [error, errorCodes]);
 
   return (
     <>

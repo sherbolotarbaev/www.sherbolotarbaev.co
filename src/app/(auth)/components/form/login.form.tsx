@@ -111,7 +111,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (cookieEmail) setValue('email', cookieEmail);
     if (checkIsOtpValid()) handleLogInOtp();
-  }, [cookieEmail, checkIsOtpValid]);
+  }, []);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
@@ -202,7 +202,7 @@ const LoginForm = () => {
         {!isOtpSent && (
           <div className={clsx('text', styles.text)}>
             <p className="desc">
-              Don't have an account?
+              {"Don't have an account?"}
               <Link
                 className="link"
                 href={next !== '/' ? `/sign-up?next=${next}` : '/sign-up'}
