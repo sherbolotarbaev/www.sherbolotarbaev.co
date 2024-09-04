@@ -67,8 +67,8 @@ const LoginForm = () => {
     [otpInput, isOtpSent],
   );
 
-  const handleSendOtp = () => {
-    toast.promise(sendOtp({ email: emailInput }).unwrap(), {
+  const handleSendOtp = ({ email }: { email: string }) => {
+    toast.promise(sendOtp({ email }).unwrap(), {
       position: 'top-center',
       loading: 'Sending...',
       success: () => {
@@ -82,8 +82,8 @@ const LoginForm = () => {
     });
   };
 
-  const handleLogInOtp = () => {
-    toast.promise(logIn({ email: emailInput, otp: otpInput, next }).unwrap(), {
+  const handleLogInOtp = ({ email, otp }: FormData) => {
+    toast.promise(logIn({ email, otp, next }).unwrap(), {
       position: 'top-center',
       loading: 'Verifying...',
       success: ({ redirectUrl, email }: LogInOtpResponse) => {
@@ -98,19 +98,19 @@ const LoginForm = () => {
     });
   };
 
-  const handleSubmitForm: SubmitHandler<FormData> = () => {
-    handleSendOtp();
+  const handleSubmitForm: SubmitHandler<FormData> = ({ email }) => {
+    handleSendOtp({ email });
   };
 
   const resendOtp = async () => {
     setIsOtpSent(false);
     handleClearInput('otp');
-    handleSendOtp();
+    handleSendOtp({ email: emailInput });
   };
 
   useEffect(() => {
     if (cookieEmail) setValue('email', cookieEmail);
-    if (checkIsOtpValid()) handleLogInOtp();
+    if (checkIsOtpValid()) handleLogInOtp({ email: emailInput, otp: otpInput });
   }, [checkIsOtpValid]);
 
   return (
